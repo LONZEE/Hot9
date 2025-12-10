@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>HOT 9 GOLF | Indoor Golf • Leagues • Lessons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="HOT 9 GOLF - indoor golf, simulators, leagues, and lessons." />
+
+    <!-- Google Font (similar clean feel) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #050814;
+            --bg-darker: #02030a;
+            --accent: #f97316;     /* HOT orange */
+            --accent-soft: rgba(249,115,22,0.12);
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --card-bg: #0b1020;
+            --border-subtle: rgba(148,163,184,0.25);
+            --radius-xl: 24px;
+            --shadow-soft: 0 18px 45px rgba(15,23,42,0.75);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #020617 0, #020617 18%, #020617 30%, #020617 40%, #020617 55%, #020617 100%);
+            color: var(--text-main);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Layout utility */
+        .container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* HEADER / NAVBAR */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 40;
+            transition: background 0.3s ease, box-shadow 0.3s ease, border-bottom-color 0.3s ease;
+            background: linear-gradient(to bottom, rgba(2,6,23,0.98), rgba(2,6,23,0.8), transparent);
+            border-bottom: 1px solid transparent;
+        }
+
+        .site-header.scrolled {
+            background: rgba(2,6,23,0.98);
+            box-shadow: 0 16px 40px rgba(15,23,42,0.8);
+            border-bottom-color: rgba(148,163,184,0.2);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #fed7aa 0, #fb923c 18%, #f97316 45%, #7c2d12 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #020617;
+            box-shadow: 0 10px 25px rgba(248,113,22,0.7);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+        }
+
+        .brand-subtitle {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.75rem;
+            font-size: 0.9rem;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #e5e7eb;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.15rem;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #fed7aa, var(--accent));
+            border-radius: 999px;
+            transition: width 0.2s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.55rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+        }
+
+        .btn-outline {
+            background: rgba(15,23,42,0.8);
+            border-color: rgba(148,163,184,0.5);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(15,23,42,0.8);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #fed7aa 0, #fb923c 28%, #f97316 60%, #c2410c 100%);
+            color: #111827;
+            box-shadow: 0 14px 35px rgba(248,113,22,0.7);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 45px rgba(248,113,22,0.85);
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.9rem;
+            font-size: 0.8rem;
+        }
+
+        /* Hamburger & mobile nav */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.25rem;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 2px;
+            width: 100%;
+            background: #e5e7eb;
+            border-radius: 999px;
+            transition: transform 0.2s ease, opacity 0.2s ease, width 0.2s ease;
+        }
+
+        body.nav-open {
+            overflow: hidden;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(2,6,23,0.96);
+            z-index: 30;
+            padding-top: 4.2rem;
+        }
+
+        .mobile-nav-inner {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            gap: 1rem;
+        }
+
+        .mobile-nav-link {
+            font-size: 1rem;
+            color: #e5e7eb;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid rgba(31,41,55,0.7);
+        }
+
+        .mobile-nav-actions {
+            margin-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding-top: 4.5rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top left, rgba(248,113,22,0.35), transparent 55%),
+                radial-gradient(circle at 70% 100%, rgba(59,130,246,0.12), transparent 55%);
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.18rem 0.25rem 0.18rem 0.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(248,250,252,0.1);
+            background: rgba(15,23,42,0.85);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.9rem;
+        }
+
+        .eyebrow-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.16rem 0.55rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(248,250,252,0.12), rgba(15,23,42,0.3));
+            font-weight: 500;
+            color: #fefce8;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #fef3c7 0, #f97316 40%, #7c2d12 100%);
+        }
+
+        .hero-title {
+            font-size: clamp(2.3rem, 4vw, 3.2rem);
+            line-height: 1.02;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .hero {
+    min-height: 100vh;
+    padding-top: 4.5rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    /* ✅ HERO IMAGE BACKGROUND */
+    background:
+        linear-gradient(to bottom, rgba(2,6,23,0.75), rgba(2,6,23,0.95)),
+        url("hero.jpg") center center / cover no-repeat;
+}
+
+        .hero-highlight {
+            background: linear-gradient(135deg, #fecaca, #fed7aa, #f97316);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin-bottom: 1.4rem;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta strong {
+            color: #e5e7eb;
+        }
+
+        .hero-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .mini-stat {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .mini-stat span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        /* HERO SIMULATOR CARD */
+        .hero-card {
+            border-radius: var(--radius-xl);
+            background: radial-gradient(circle at top, rgba(15,23,42,0.7), rgba(15,23,42,0.9));
+            border: 1px solid rgba(148,163,184,0.4);
+            padding: 1.25rem;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .hero-card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: #fed7aa;
+            margin-bottom: 0.55rem;
+        }
+
+        .hero-card-main {
+            border-radius: calc(var(--radius-xl) - 4px);
+            border: 1px solid rgba(148,163,184,0.3);
+            padding: 0.9rem;
+            background: linear-gradient(145deg, rgba(15,23,42,0.9), rgba(15,23,42,0.98));
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.65rem;
+        }
+
+        .hero-card-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hero-card-status {
+            font-size: 0.75rem;
+            color: #bbf7d0;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #bbf7d0 0, #22c55e 45%, #14532d 100%);
+        }
+
+        .hero-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+            font-size: 0.8rem;
+        }
+
+        .hero-card-item {
+            padding: 0.55rem 0.6rem;
+            border-radius: 14px;
+            border: 1px solid rgba(51,65,85,0.9);
+            background: radial-gradient(circle at top left, rgba(15,23,42,1), rgba(15,23,42,0.7));
+        }
+
+        .hero-card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .hero-card-value {
+            font-weight: 500;
+        }
+
+        .hero-card-footer {
+            margin-top: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .hero-card-pill {
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.9);
+            border: 1px dashed rgba(148,163,184,0.4);
+        }
+
+        .hero-card-glow {
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at 40% 0, rgba(248,113,22,0.28), transparent 55%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* SECTION BASE */
+        section {
+            padding: 4.5rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 2.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title-block {
+            max-width: 520px;
+        }
+
+        .label-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            padding: 0.16rem 0.6rem;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(148,163,184,0.6);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .label-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-size: 1.45rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+            gap: 2.3rem;
+            align-items: center;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 1rem;
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .about-list li {
+            display: flex;
+            gap: 0.55rem;
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            margin-top: 0.35rem;
+            background: radial-gradient(circle at 30% 20%, #fef3c7 0, #f97316 40%, #7c2d12 100%);
+        }
+
+        .about-card {
+            border-radius: var(--radius-xl);
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
+            padding: 1.2rem;
+            box-shadow: 0 16px 35px rgba(15,23,42,0.7);
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .about-stat-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .about-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-stat span {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* PLANS / PRICING */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            padding: 1.25rem;
+            box-shadow: 0 14px 30px rgba(15,23,42,0.9);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .plan-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .plan-name {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .plan-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .plan-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .plan-features {
+            list-style: none;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .plan-feature::before {
+            content: "•";
+            margin-right: 0.4rem;
+            color: var(--accent);
+        }
+
+        .plan-cta {
+            margin-top: 0.6rem;
+        }
+
+        .plan-card.featured {
+            position: relative;
+            border: 1px solid rgba(248,250,252,0.5);
+            background: radial-gradient(circle at 0 0, rgba(248,113,22,0.12), transparent 60%), var(--card-bg);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: 0.9rem;
+            right: 1.1rem;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(248,250,252,0.12);
+            border: 1px solid rgba(248,250,252,0.4);
+        }
+
+        /* SIMULATORS / FACILITY */
+        .two-col {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 2rem;
+        }
+
+        .sim-card {
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            padding: 1.2rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .sim-tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .sim-tag {
+            font-size: 0.75rem;
+            padding: 0.18rem 0.55rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.6);
+            color: var(--text-muted);
+        }
+
+        .sim-photo {
+            margin-top: 1rem;
+            border-radius: 18px;
+            border: 1px solid rgba(15,23,42,1);
+            background: radial-gradient(circle at center, rgba(15,23,42,0.2), rgba(15,23,42,1));
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* LEAGUES / EVENTS */
+        .strip {
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,1));
+            border: 1px solid rgba(148,163,184,0.35);
+            padding: 1.3rem 1.2rem;
+            display: grid;
+            grid-template-columns: 1.5fr 2fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .strip-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .chip {
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.6);
+            color: var(--text-muted);
+        }
+
+        /* TESTIMONIALS */
+        .testimonial-shell {
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            padding: 1.4rem 1.3rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .testimonial-slider {
+            position: relative;
+        }
+
+        .testimonial-slide {
+            display: none;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .testimonial-name {
+            font-weight: 500;
+            margin-bottom: 0.05rem;
+        }
+
+        .testimonial-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .testimonial-controls {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot-row {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(148,163,184,0.4);
+        }
+
+        .dot.active {
+            background: var(--accent);
+        }
+
+        /* FAQ */
+        .faq-list {
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .faq-item {
+            border-radius: 16px;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(31,41,55,0.9);
+            padding: 0.8rem 0.85rem;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .faq-toggle {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .faq-answer {
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.18s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        /* CONTACT / FOOTER */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+            gap: 2rem;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .field {
+            display: grid;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+        }
+
+        .field label {
+            color: var(--text-muted);
+        }
+
+        .field input,
+        .field textarea {
+            background: rgba(15,23,42,0.95);
+            border-radius: 14px;
+            border: 1px solid rgba(51,65,85,0.9);
+            padding: 0.55rem 0.7rem;
+            font-family: inherit;
+            font-size: 0.88rem;
+            color: #e5e7eb;
+        }
+
+        .field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .map-card {
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            background: var(--card-bg);
+            padding: 1rem;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .map-embed {
+            margin-top: 0.85rem;
+            border-radius: 16px;
+            border: 1px solid rgba(15,23,42,1);
+            background: radial-gradient(circle at center, rgba(15,23,42,0.2), rgba(15,23,42,1));
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        footer {
+            border-top: 1px solid rgba(31,41,55,0.9);
+            padding: 1.2rem 0 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            text-decoration: underline;
+            text-decoration-color: rgba(148,163,184,0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 960px) {
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 2.2rem;
+            }
+
+            .hero-card {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+
+            .about-grid,
+            .two-col,
+            .strip,
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-nav {
+                display: block;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.2s ease;
+            }
+
+            .mobile-nav.open {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .hero {
+                padding-top: 4.2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-title {
+                font-size: 2.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="#top" class="brand" data-scroll>
+                    <!-- <div class="brand-mark">9</div> -->
+                    <div class="brand-text">
+                        <span class="brand-title">HOT 9 GOLF</span>
+                        <!-- <span class="brand-subtitle">Indoor • Leagues • Lessons</span> -->
+                    </div>
+                </a>
+
+                <nav class="nav-links">
+                    <a class="nav-link" data-scroll href="#about">About</a>
+                    <a class="nav-link" data-scroll href="#simulators">Simulators</a>
+                    <a class="nav-link" data-scroll href="#memberships">Memberships</a>
+                    
+                    <a class="nav-link" data-scroll href="#faq">FAQ</a>
+                    <a class="nav-link" data-scroll href="#contact">Contact</a>
+                </nav>
+
+                <div class="nav-cta">
+                    <button class="btn btn-outline btn-sm" data-scroll href="#memberships">
+                        View Plans
+                    </button>
+                    <a href="#contact" class="btn btn-primary btn-sm" data-scroll>
+                        Book Now
+                    </a>
+                </div>
+
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-inner">
+                <a class="mobile-nav-link" data-scroll href="#about">About</a>
+                <a class="mobile-nav-link" data-scroll href="#simulators">Simulators</a>
+                <a class="mobile-nav-link" data-scroll href="#memberships">Memberships</a>
+                
+                <a class="mobile-nav-link" data-scroll href="#faq">FAQ</a>
+                <a class="mobile-nav-link" data-scroll href="#contact">Contact</a>
+                <div class="mobile-nav-actions">
+                    <button class="btn btn-outline btn-sm" data-scroll href="#memberships">View Plans</button>
+                    <a class="btn btn-primary btn-sm" data-scroll href="#contact">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="top">
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-grid" style="grid-template-columns: 1fr; text-align:center;">
+                    <div>
+                        
+                        <h1 class="hero-title">
+                            Turn your back nine into a
+                            <span class="hero-highlight">HOT 9</span>.
+                        </h1>
+                        <p class="hero-subtitle">
+                            HOT 9 GOLF is your indoor home for pure ball-striking, league nights, and pressure-free practice.
+                            World-class simulators, real-time feedback, and a community of golfers who love staying out past sunset.
+                        </p>
+
+                        <div class="hero-cta-row" style="justify-content:center;">
+                            <a href="#contact" class="btn btn-primary" data-scroll>
+                                Book a Bay
+                            </a>
+                            <button class="btn btn-outline" data-scroll href="#memberships">
+                                View Memberships
+                            </button>
+                        </div>
+
+                        <!-- <div class="hero-meta">
+                            <span><strong>50+</strong> courses on sim</span>
+                            <span><strong>Open late</strong> for hot-9 rounds</span>
+                            <span><strong>All levels</strong> welcome</span>
+                        </div>
+
+                        <div class="hero-badge-row">
+                            <div class="mini-stat">
+                                <span>1,200+</span>
+                                Simulated holes played
+                            </div>
+                            <div class="mini-stat">
+                                <span>180+</span>
+                                League rounds tracked
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- Hero simulator card -->
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            About HOT 9 GOLF
+                        </div>
+                        <h2 class="section-title">A golf club built for late nights and better scores.</h2>
+                        <p class="section-subtitle">
+                            HOT 9 GOLF blends the feel of a modern golf lounge with the focus of a training bay.
+                            Practice, play full rounds, or join league nights — all under one roof, rain or shine.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-grid">
+                    <div>
+                        <p style="font-size:0.9rem;color:var(--text-muted);">
+                            Whether you’re grinding for your next tournament or chasing your first pure 7-iron,
+                            HOT 9 GOLF gives you the data and environment to actually get better.
+                        </p>
+                        <ul class="about-list">
+                            <li>
+                                <span class="bullet"></span>
+                                <span>High-speed cameras &amp; simulator ball-tracking for every shot.</span>
+                            </li>
+                            <li>
+                                <span class="bullet"></span>
+                                <span>Bay layouts designed for solo practice, friend groups, or league play.</span>
+                            </li>
+                            <li>
+                                <span class="bullet"></span>
+                                <span>Beginner-friendly coaching and simple on-ramp for new golfers.</span>
+                            </li>
+                            <li>
+                                <span class="bullet"></span>
+                                <span>Bring your own clubs or use in-house sets; right- and left-handed welcome.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <aside class="about-card">
+                        <div class="about-stat-row">
+                            <div class="about-stat">
+                                <span>4</span>
+                                Simulator bays
+                            </div>
+                            <div class="about-stat">
+                                <span>200+</span>
+                                Course combinations
+                            </div>
+                        </div>
+                        <div class="about-stat-row">
+                            <div class="about-stat">
+                                <span>7am–11pm</span>
+                                Core hours (extended for events)
+                            </div>
+                            <div class="about-stat">
+                                <span>0</span>
+                                Weather delays
+                            </div>
+                        </div>
+                        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.4rem;">
+                            From weekday lunch buckets to after-work hot-nine matches, there’s always a bay that fits your schedule.
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIMULATORS / FACILITY -->
+        <section id="simulators">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            Simulators & Facility
+                        </div>
+                        <h2 class="section-title">Tour-level feedback without leaving town.</h2>
+                        <p class="section-subtitle">
+                            Our launch monitors and simulators track ball speed, spin, face angle, path, and more.
+                            You’ll see exactly why that last shot was a baby draw or a wipey slice.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="two-col">
+                    <div>
+                        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.75rem;">
+                            Every bay at HOT 9 GOLF is outfitted with high-definition projection, realistic turf, and
+                            comfortable lounge seating so your practice can feel like hanging out — not grinding alone on the range.
+                        </p>
+                        <div class="sim-tag-row">
+                            <span class="sim-tag">Ball &amp; club data on every swing</span>
+                            <span class="sim-tag">Practice modes, skills challenges</span>
+                            <span class="sim-tag">Closest-to-the-pin &amp; long-drive games</span>
+                            <span class="sim-tag">Full 18-hole rounds in ~90 minutes</span>
+                        </div>
+                    </div>
+                    <aside class="sim-card">
+                        <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.3rem;">How a HOT 9 session works</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);">
+                            Book a bay, choose your course or practice mode, and set up a quick 9-hole loop.
+                            Our staff will get you oriented with the controls, scoring, and formats.
+                        </p>
+                        <ul class="about-list" style="margin-top:0.7rem;">
+                            <li>
+                                <span class="bullet"></span>
+                                <span>Typical 9-hole session: 45–60 minutes for 2–3 players.</span>
+                            </li>
+                            <li>
+                                <span class="bullet"></span>
+                                <span>Auto-saved stats so you can track progress over time.</span>
+                            </li>
+                            <li>
+                                <span class="bullet"></span>
+                                <span>League and event formats built specifically around hot-nine play.</span>
+                            </li>
+                        </ul>
+                        <div class="sim-photo">
+                            Facility photo / video placeholder<br />
+                            (Replace with a real image of your bays)
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEMBERSHIPS / PRICING -->
+        <section id="memberships">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            Memberships & Bay Rates
+                        </div>
+                        <h2 class="section-title">Simple plans for practice, play, or full-on obsession.</h2>
+                        <p class="section-subtitle">
+                            Start with drop-in bay rentals or lock in a membership for guaranteed hours and league perks.
+                            All pricing below is a template — update to your real numbers.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-grid">
+                    <!-- Plan 1 -->
+                    <article class="plan-card">
+                        <div class="plan-label">Starter</div>
+                        <div class="plan-name">Weekday Range Pass</div>
+                        <div class="plan-price">$40 / hr</div>
+                        <div class="plan-note">Mon–Thu, open–5pm • up to 4 players</div>
+                        <ul class="plan-features">
+                            <li class="plan-feature">Book any open bay during off-peak hours</li>
+                            <li class="plan-feature">Practice and skills challenges included</li>
+                            <li class="plan-feature">Clubs available on request</li>
+                        </ul>
+                        <div class="plan-cta">
+                            <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                                Book weekday bay
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Plan 2 (featured membership) -->
+                    <article class="plan-card featured">
+                        <div class="plan-badge">Most popular</div>
+                        <div class="plan-label">Membership</div>
+                        <div class="plan-name">HOT 9 Club</div>
+                        <div class="plan-price">$150 / month</div>
+                        <div class="plan-note">Perfect for 1–2 rounds + practice each week.</div>
+                        <ul class="plan-features">
+                            <li class="plan-feature">8 hrs of bay time per month</li>
+                            <li class="plan-feature">Member pricing on additional hours</li>
+                            <li class="plan-feature">Priority access to league nights</li>
+                            <li class="plan-feature">Guest passes for friends</li>
+                        </ul>
+                        <div class="plan-cta">
+                            <button class="btn btn-primary btn-sm" data-scroll href="#contact">
+                                Join HOT 9 Club
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Plan 3 -->
+                    <article class="plan-card">
+                        <div class="plan-label">Premium</div>
+                        <div class="plan-name">Unlimited Hot 9</div>
+                        <div class="plan-price">$260 / month</div>
+                        <div class="plan-note">For the player who always wants “one more nine.”</div>
+                        <ul class="plan-features">
+                            <li class="plan-feature">Extended bay access each week</li>
+                            <li class="plan-feature">Unlimited league registrations (space permitting)</li>
+                            <li class="plan-feature">Discounts on lessons and events</li>
+                        </ul>
+                        <div class="plan-cta">
+                            <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                                Talk to us about premium
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEAGUES / EVENTS -->
+        <section id="leagues">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            Leagues & Events
+                        </div>
+                        <h2 class="section-title">League nights, hot-nine scrambles, and private events.</h2>
+                        <p class="section-subtitle">
+                            Weekly league play, closest-to-the-pin nights, company outings, and more.
+                            Build your own team or we’ll match you with new playing partners.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="strip">
+                    <div>
+                        <div class="strip-title">HOT 9 League • 6-week season</div>
+                        <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.65rem;">
+                            Two-player teams, 9-hole rounds each week, leaderboard tracking,
+                            and season-end prizes for low gross, low net, and most improved.
+                        </p>
+                        <div class="chip-row">
+                            <div class="chip">9-hole rounds</div>
+                            <div class="chip">Handicap-friendly formats</div>
+                            <div class="chip">Prizes &amp; merch</div>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="font-size:0.86rem;color:var(--text-muted);margin-bottom:0.5rem;">
+                            Reserve a team spot now or ask about hosting a private league for your company, friend group,
+                            or golf club. We’ll help you design formats, schedules, and scoring.
+                        </p>
+                        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                            <button class="btn btn-primary btn-sm" data-scroll href="#contact">
+                                Reserve league spot
+                            </button>
+                            <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                                Host a private event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            What golfers are saying
+                        </div>
+                        <h2 class="section-title">Practice that feels like hanging out with friends.</h2>
+                        <p class="section-subtitle">
+                            Early members love the mix of serious practice and hot-nine competition.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="testimonial-shell">
+                    <div class="testimonial-slider" id="testimonialSlider">
+                        <article class="testimonial-slide active">
+                            <div class="testimonial-name">Evan • 6-handicap</div>
+                            <div class="testimonial-meta">League player • chasing a scratch card</div>
+                            <p class="testimonial-text">
+                                “I used to just guess why my ball was curving. Now I can see club path, face, and spin on every shot.
+                                The hot-nine format keeps things competitive but still quick. It’s easily the best practice I’ve had in years.”
+                            </p>
+                        </article>
+                        <article class="testimonial-slide">
+                            <div class="testimonial-name">Maria • New golfer</div>
+                            <div class="testimonial-meta">First set of clubs this year</div>
+                            <p class="testimonial-text">
+                                “The team at HOT 9 made it super easy to get started.
+                                I can hit in my own bay without feeling watched, and the lessons helped me go from ‘no idea’ to
+                                actually getting the ball in the air consistently.”
+                            </p>
+                        </article>
+                        <article class="testimonial-slide">
+                            <div class="testimonial-name">James • Weekend warrior</div>
+                            <div class="testimonial-meta">Loves after-work nine-hole matches</div>
+                            <p class="testimonial-text">
+                                “We book a bay on Thursday nights and run a hot-nine match.
+                                No daylight worries, no lost balls, just pressure putts and a lot of chirping.
+                                It’s become the highlight of my week.”
+                            </p>
+                        </article>
+                    </div>
+                    <div class="testimonial-controls">
+                        <div class="testimonial-buttons">
+                            <button class="btn btn-outline btn-sm" id="prevTestimonial">Prev</button>
+                            <button class="btn btn-outline btn-sm" id="nextTestimonial">Next</button>
+                        </div>
+                        <div class="dot-row" id="testimonialDots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            FAQ
+                        </div>
+                        <h2 class="section-title">Questions before you book your first hot nine?</h2>
+                        <p class="section-subtitle">
+                            A few quick answers. Update these with your real policies.
+                        </p>
+                    </div>
+                </div>
+
+                <ul class="faq-list">
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span>Do I need to bring my own clubs?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            You’re welcome to bring your own clubs — that’s always our recommendation.
+                            We also keep a small selection of house sets you can borrow if you’re just getting started.
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does a HOT 9 round take?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            For two players, a 9-hole round typically takes 45–60 minutes depending on pace.
+                            Larger groups or first-time simulator players may want to book a 90-minute block.
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span>Are beginners welcome?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely. We love working with new golfers.
+                            We can set you up with beginner-friendly settings, aim assists, and optional coaching sessions.
+                        </div>
+                    </li>
+                    <li class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I host a private event or company outing?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Yes. We can reserve multiple bays, help design formats, and build a simple scoreboard.
+                            Reach out with your date, head count, and goals — we’ll take it from there.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title-block">
+                        <div class="label-pill">
+                            <span class="label-dot"></span>
+                            Contact & Booking
+                        </div>
+                        <h2 class="section-title">Ready to book your first HOT 9?</h2>
+                        <p class="section-subtitle">
+                            Use the form below or plug in your booking tool later.
+                            This is a simple starter layout — connect it to email or a booking system.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <form class="contact-form">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" placeholder="Your name" />
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="you@example.com" />
+                        </div>
+                        <div class="field">
+                            <label for="message">How can we help?</label>
+                            <textarea id="message" placeholder="Tell us if you’re booking a bay, league spot, or event."></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm">
+                            Submit (connect to backend later)
+                        </button>
+                    </form>
+
+                    <aside class="map-card">
+                        <div style="font-size:0.9rem;margin-bottom:0.4rem;font-weight:500;">
+                            HOT 9 GOLF
+                        </div>
+                        <div style="font-size:0.85rem;color:var(--text-muted);">
+                            123 Hot Nine Drive<br />
+                            Your City, ST 00000<br />
+                            <br />
+                            <strong>Hours</strong><br />
+                            Mon–Thu: 7am–10pm<br />
+                            Fri–Sat: 7am–11pm<br />
+                            Sun: 10am–8pm
+                            <br /><br />
+                            <strong>Contact</strong><br />
+                            (555) 123-4567<br />
+                            info@hot9golf.com
+                        </div>
+                        <div class="map-embed">
+                            Map / Google Maps embed placeholder
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-row">
+                <span>© <span id="year"></span> HOT 9 GOLF. All rights reserved.</span>
+                <div class="footer-links">
+                    <a href="#home" data-scroll>Back to top</a>
+                    <a href="#memberships" data-scroll>Memberships</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header on scroll
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 8) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for elements with data-scroll
+        function smoothScrollTo(targetId) {
+            const el = document.querySelector(targetId);
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            const offset = rect.top + window.scrollY - 72; // adjust for header height
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('[data-scroll]').forEach(el => {
+            el.addEventListener('click', (e) => {
+                const href = el.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    closeMobileNav();
+                    smoothScrollTo(href);
+                }
+            });
+        });
+
+        // Mobile nav toggle + lock scroll
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+
+        function openMobileNav() {
+            hamburger.classList.add('open');
+            mobileNav.classList.add('open');
+            document.body.classList.add('nav-open');
+        }
+
+        function closeMobileNav() {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+            document.body.classList.remove('nav-open');
+        }
+
+        hamburger.addEventListener('click', () => {
+            if (hamburger.classList.contains('open')) {
+                closeMobileNav();
+            } else {
+                openMobileNav();
+            }
+        });
+
+        // Close mobile nav when tapping background
+        mobileNav.addEventListener('click', (e) => {
+            if (e.target === mobileNav) {
+                closeMobileNav();
+            }
+        });
+
+        // Testimonials slider (simple)
+        const slides = Array.from(document.querySelectorAll('.testimonial-slide'));
+        const dots = Array.from(document.querySelectorAll('#testimonialDots .dot'));
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === index);
+            });
+            dots.forEach((d, i) => {
+                d.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        document.getElementById('prevTestimonial').addEventListener('click', () => {
+            const next = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(next);
+        });
+
+        document.getElementById('nextTestimonial').addEventListener('click', () => {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => showSlide(i));
+        });
+
+        // Auto-advance testimonials every 10s
+        setInterval(() => {
+            const next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }, 10000);
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const open = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!open) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
