@@ -315,11 +315,7 @@ img { max-width:100%; display:block; }
         url("hero.jpg") center center / cover no-repeat;
 }
 
-        .hero-highlight {
-            background: linear-gradient(135deg, #fecaca, #fed7aa, #f97316);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+        
 
         .hero-subtitle {
             font-size: 0.98rem;
@@ -585,6 +581,51 @@ img { max-width:100%; display:block; }
         }
 
         /* PLANS / PRICING */
+        /* =========================
+   PRICING TOGGLE
+========================= */
+
+.pricing-toggle {
+    display: inline-flex;
+    gap: 0.4rem;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(0,255,127,0.35);
+    border-radius: 999px;
+    padding: 0.25rem;
+}
+
+.toggle-btn {
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #000;
+    box-shadow: 0 0 16px rgba(0,255,127,0.45);
+}
+
+/* GROUP VISIBILITY */
+.pricing-group {
+    display: none;
+    animation: fadeUp 0.35s ease;
+}
+
+.pricing-group.active {
+    display: block;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
         .card-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -659,6 +700,91 @@ img { max-width:100%; display:block; }
             background: rgba(248,250,252,0.12);
             border: 1px solid rgba(248,250,252,0.4);
         }
+
+
+        /*scroll shadow for featured plan*/
+        /* =========================
+   HORIZONTAL SCROLL GALLERY
+========================= */
+
+.scroll-gallery {
+    padding: 3.5rem 0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.scroll-gallery-track {
+    display: flex;
+    gap: 1.75rem;
+    padding: 0 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    will-change: transform;
+    transition: transform 0.08s linear;
+}
+
+.scroll-gallery-track::-webkit-scrollbar {
+    display: none; /* Chrome / Safari */
+}
+
+.scroll-image-card {
+    flex: 0 0 min(85vw, 640px);
+    height: 380px;
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    scroll-snap-align: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 22px 50px rgba(0,0,0,0.6);
+    background: #000;
+}
+
+.scroll-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.05) contrast(1.05);
+}
+
+/* Gradient overlay */
+.scroll-image-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(2,6,23,0.15),
+        rgba(2,6,23,0.65)
+    );
+}
+
+/* Caption */
+.scroll-image-overlay {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 2;
+}
+
+.scroll-image-overlay span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(0,255,127,0.45);
+    color: #e5e7eb;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 14px rgba(0,255,127,0.35);
+}
+
+/* Mobile tuning */
+@media (max-width: 720px) {
+    .scroll-image-card {
+        height: 300px;
+    }
+}
 
         /* SIMULATORS / FACILITY */
         .two-col {
@@ -954,6 +1080,78 @@ img { max-width:100%; display:block; }
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
+        /* =========================
+   ABOUT – MODERN LAYOUT
+========================= */
+
+.about-grid-modern {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.about-copy p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+}
+
+.about-features {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.about-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+}
+
+.feature-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    margin-top: 0.4rem;
+    background: radial-gradient(circle, #ccffe8, var(--accent), #006b3c);
+    box-shadow: 0 0 8px rgba(0,255,127,0.45);
+}
+
+/* IMAGE CARD */
+.about-image-card {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+}
+
+.about-image-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(2,6,23,0.2),
+        rgba(2,6,23,0.65)
+    );
+}
+
+.about-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+    .about-grid-modern {
+        grid-template-columns: 1fr;
+    }
+}
 
         @media (max-width: 720px) {
             .nav-links,
@@ -1087,74 +1285,56 @@ img { max-width:100%; display:block; }
 
         <!-- ABOUT -->
         <section id="about">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-title-block">
-                        <div class="label-pill">
-                            <span class="label-dot"></span>
-                            About HOT 9 GOLF
-                        </div>
-                        <h2 class="section-title">A golf club built for late nights and better scores.</h2>
-                        <p class="section-subtitle">
-                            HOT 9 GOLF blends the feel of a modern golf lounge with the focus of a training bay.
-                            Practice, play full rounds, or join league nights — all under one roof, rain or shine.
-                        </p>
-                    </div>
-                </div>
+    <div class="container">
+        
+        
+        <div class="about-grid-modern">
+            <!-- LEFT CONTENT -->
+            <div class="about-copy">
+                <h2 class="section-title">
+                    A golf club built for late nights and better scores.
+                </h2>
+                
+                <p>
+                    Whether you’re grinding for your next tournament or chasing your first pure 7-iron,
+                    HOT 9 GOLF gives you the data, feedback, and environment to actually get better.
+                </p>
 
-                <div class="about-grid">
-                    <div>
-                        <p style="font-size:0.9rem;color:var(--text-muted);">
-                            Whether you’re grinding for your next tournament or chasing your first pure 7-iron,
-                            HOT 9 GOLF gives you the data and environment to actually get better.
-                        </p>
-                        <ul class="about-list">
-                            <li>
-                                <span class="bullet"></span>
-                                <span>High-speed cameras &amp; simulator ball-tracking for every shot.</span>
-                            </li>
-                            <li>
-                                <span class="bullet"></span>
-                                <span>Bay layouts designed for solo practice, friend groups, or league play.</span>
-                            </li>
-                            <li>
-                                <span class="bullet"></span>
-                                <span>Beginner-friendly coaching and simple on-ramp for new golfers.</span>
-                            </li>
-                            <li>
-                                <span class="bullet"></span>
-                                <span>Bring your own clubs or use in-house sets; right- and left-handed welcome.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <aside class="about-card">
-                        <div class="about-stat-row">
-                            <div class="about-stat">
-                                <span>4</span>
-                                Simulator bays
-                            </div>
-                            <div class="about-stat">
-                                <span>200+</span>
-                                Course combinations
-                            </div>
-                        </div>
-                        <div class="about-stat-row">
-                            <div class="about-stat">
-                                <span>7am–11pm</span>
-                                Core hours (extended for events)
-                            </div>
-                            <div class="about-stat">
-                                <span>0</span>
-                                Weather delays
-                            </div>
-                        </div>
-                        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.4rem;">
-                            From weekday lunch buckets to after-work hot-nine matches, there’s always a bay that fits your schedule.
-                        </p>
-                    </aside>
-                </div>
+                
+                    
+                
             </div>
-        </section>
+
+            <!-- RIGHT IMAGE -->
+            <div class="about-image-card">
+                <img src="media/about.jpeg" alt="HOT 9 GOLF simulator bays">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="scroll-gallery">
+    <div class="scroll-gallery-track">
+
+        <div class="scroll-image-card">
+            <img src="media/gallery-1.jpg" alt="Simulator bays at HOT 9 GOLF">
+            
+        </div>
+
+        <div class="scroll-image-card">
+            <img src="media/gallery-2.jpg" alt="League night at HOT 9 GOLF">
+            
+        </div>
+        <div class="scroll-image-card">
+            <img src="media/gallery-3.jpg" alt="League night at HOT 9 GOLF">
+            
+        </div>
+        <div class="scroll-image-card">
+            <img src="media/gallery-4.jpg" alt="League night at HOT 9 GOLF">
+            
+        </div>
+    </div>
+</section>
 
         <!-- SIMULATORS / FACILITY -->
         <section id="simulators">
@@ -1217,83 +1397,145 @@ img { max-width:100%; display:block; }
 
         <!-- MEMBERSHIPS / PRICING -->
         <section id="memberships">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-title-block">
-                        <div class="label-pill">
-                            <span class="label-dot"></span>
-                            Memberships & Bay Rates
-                        </div>
-                        <h2 class="section-title">Simple plans for practice, play, or full-on obsession.</h2>
-                        <p class="section-subtitle">
-                            Start with drop-in bay rentals or lock in a membership for guaranteed hours and league perks.
-                            All pricing below is a template — update to your real numbers.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card-grid">
-                    <!-- Plan 1 -->
-                    <article class="plan-card">
-                        <div class="plan-label">Starter</div>
-                        <div class="plan-name">Weekday Range Pass</div>
-                        <div class="plan-price">$40 / hr</div>
-                        <div class="plan-note">Mon–Thu, open–5pm • up to 4 players</div>
-                        <ul class="plan-features">
-                            <li class="plan-feature">Book any open bay during off-peak hours</li>
-                            <li class="plan-feature">Practice and skills challenges included</li>
-                            <li class="plan-feature">Clubs available on request</li>
-                        </ul>
-                        <div class="plan-cta">
-                            <button class="btn btn-outline btn-sm" data-scroll href="#contact">
-                                Book weekday bay
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Plan 2 (featured membership) -->
-                    <article class="plan-card featured">
-                        <div class="plan-badge">Most popular</div>
-                        <div class="plan-label">Membership</div>
-                        <div class="plan-name">HOT 9 Club</div>
-                        <div class="plan-price">$150 / month</div>
-                        <div class="plan-note">Perfect for 1–2 rounds + practice each week.</div>
-                        <ul class="plan-features">
-                            <li class="plan-feature">8 hrs of bay time per month</li>
-                            <li class="plan-feature">Member pricing on additional hours</li>
-                            <li class="plan-feature">Priority access to league nights</li>
-                            <li class="plan-feature">Guest passes for friends</li>
-                        </ul>
-                        <div class="plan-cta">
-                            <button class="btn btn-primary btn-sm" data-scroll href="#contact">
-                                Join HOT 9 Club
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Plan 3 -->
-                    <article class="plan-card">
-                        <div class="plan-label">Premium</div>
-                        <div class="plan-name">Unlimited Hot 9</div>
-                        <div class="plan-price">$260 / month</div>
-                        <div class="plan-note">For the player who always wants “one more nine.”</div>
-                        <ul class="plan-features">
-                            <li class="plan-feature">Extended bay access each week</li>
-                            <li class="plan-feature">Unlimited league registrations (space permitting)</li>
-                            <li class="plan-feature">Discounts on lessons and events</li>
-                        </ul>
-                        <div class="plan-cta">
-                            <button class="btn btn-outline btn-sm" data-scroll href="#contact">
-                                Talk to us about premium
-                            </button>
-                        </div>
-                    </article>
-                </div>
+    <div class="container">
+        <div class="section-header">
+            <div class="section-title-block">
+                
+                <h2 class="section-title">
+                    Simple plans for practice, play, or full-on obsession.
+                </h2>
+                
+                
             </div>
-        </section>
+
+            <!-- TOGGLE -->
+            <div class="pricing-toggle">
+                <button class="toggle-btn active" data-target="hourly">
+                    Per-Hour
+                </button>
+                <button class="toggle-btn" data-target="membership">
+                    Memberships
+                </button>
+            </div>
+        </div>
+
+        <!-- PER HOUR -->
+        <div class="pricing-group active" id="pricing-hourly">
+            <div class="card-grid">
+                <article class="plan-card">
+                    <div class="plan-label">Starter</div>
+                    <div class="plan-name">Weekday Range Pass</div>
+                    <div class="plan-price">$40 / hr</div>
+                    <div class="plan-note">Mon–Thu, open–5pm • up to 4 players</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Book any open bay during off-peak hours</li>
+                        <li class="plan-feature">Practice and skills challenges included</li>
+                        <li class="plan-feature">Clubs available on request</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Book weekday bay
+                        </button>
+                    </div>
+                </article>
+
+                <article class="plan-card">
+                    <div class="plan-label">Peak</div>
+                    <div class="plan-name">Evenings & Weekends</div>
+                    <div class="plan-price">$55 / hr</div>
+                    <div class="plan-note">Fri–Sun & after 5pm</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Prime-time bay access</li>
+                        <li class="plan-feature">Groups up to 4 players</li>
+                        <li class="plan-feature">Closest-to-pin & games included</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Book peak bay
+                        </button>
+                    </div>
+                </article>
+                <article class="plan-card">
+                    <div class="plan-label">Peak</div>
+                    <div class="plan-name">Evenings & Weekends</div>
+                    <div class="plan-price">$55 / hr</div>
+                    <div class="plan-note">Fri–Sun & after 5pm</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Prime-time bay access</li>
+                        <li class="plan-feature">Groups up to 4 players</li>
+                        <li class="plan-feature">Closest-to-pin & games included</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Book peak bay
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- MEMBERSHIPS -->
+        <div class="pricing-group" id="pricing-membership">
+            <div class="card-grid">
+                <article class="plan-card featured">
+                    <div class="plan-badge">Most popular</div>
+                    <div class="plan-label">Membership</div>
+                    <div class="plan-name">HOT 9 Club</div>
+                    <div class="plan-price">$150 / month</div>
+                    <div class="plan-note">1–2 rounds + practice weekly</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">8 hrs of bay time per month</li>
+                        <li class="plan-feature">Member pricing on extra hours</li>
+                        <li class="plan-feature">League priority access</li>
+                        <li class="plan-feature">Guest passes</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <button class="btn btn-primary btn-sm" data-scroll href="#contact">
+                            Join HOT 9 Club
+                        </button>
+                    </div>
+                </article>
+
+                <article class="plan-card">
+                    <div class="plan-label">Premium</div>
+                    <div class="plan-name">Unlimited Hot 9</div>
+                    <div class="plan-price">$260 / month</div>
+                    <div class="plan-note">For serious grinders</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Extended bay access weekly</li>
+                        <li class="plan-feature">Unlimited league entries</li>
+                        <li class="plan-feature">Discounts on lessons & events</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Talk premium
+                        </button>
+                    </div>
+                </article>
+                <article class="plan-card">
+                    <div class="plan-label">Premium</div>
+                    <div class="plan-name">Unlimited Hot 9</div>
+                    <div class="plan-price">$260 / month</div>
+                    <div class="plan-note">For serious grinders</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Extended bay access weekly</li>
+                        <li class="plan-feature">Unlimited league entries</li>
+                        <li class="plan-feature">Discounts on lessons & events</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <button class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Talk premium
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <!-- LEAGUES / EVENTS -->
-        <section id="leagues">
+        <!-- <section id="leagues">
             <div class="container">
                 <div class="section-header">
                     <div class="section-title-block">
@@ -1338,7 +1580,7 @@ img { max-width:100%; display:block; }
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- TESTIMONIALS -->
         <section id="testimonials">
@@ -1591,5 +1833,73 @@ hamburger.addEventListener('click',()=>{
 ======================================================= */
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+<script>
+/* ======================================
+   AUTO HORIZONTAL SCROLL ON VERTICAL SCROLL
+====================================== */
+
+(function () {
+    const gallery = document.querySelector('.scroll-gallery');
+    const track = document.querySelector('.scroll-gallery-track');
+
+    if (!gallery || !track) return;
+
+    // Disable auto-scroll on touch devices (mobile)
+    const isTouch = window.matchMedia('(hover: none)').matches;
+    if (isTouch) return;
+
+    let startScroll = 0;
+    let endScroll = 0;
+    let maxTranslate = 0;
+
+    function recalc() {
+        const rect = gallery.getBoundingClientRect();
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const offsetTop = rect.top + scrollTop;
+
+        startScroll = offsetTop - window.innerHeight * 0.6;
+        endScroll = offsetTop + rect.height;
+        maxTranslate = track.scrollWidth - window.innerWidth;
+    }
+
+    function onScroll() {
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        if (scrollY < startScroll || scrollY > endScroll) return;
+
+        const progress = (scrollY - startScroll) / (endScroll - startScroll);
+        const clamped = Math.min(Math.max(progress, 0), 1);
+        const translateX = clamped * maxTranslate;
+
+        track.style.transform = `translateX(-${translateX}px)`;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', recalc);
+
+    recalc();
+})();
+</script>
+<script>
+/* ======================================
+   PRICING TOGGLE
+====================================== */
+
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.pricing-group').forEach(group => {
+            group.classList.remove('active');
+        });
+
+        document.getElementById(`pricing-${target}`).classList.add('active');
+    });
+});
+</script>
+
 </body>
 </html>
