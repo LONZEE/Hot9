@@ -185,22 +185,31 @@ img { max-width:100%; display:block; }
 
 /* Gradient overlay (stays above video) */
 .hero::before {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to bottom, rgba(2,6,23,0.65), rgba(2,6,23,0.95));
-    z-index:-1;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(2,6,23,0.35),
+        rgba(2,6,23,0.65)
+    );
+    z-index: -1;
 }
+
 
 /* Video (always behind everything) */
 .hero-video {
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:-2;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+
+    /* 🔥 Lighten + enhance */
+    filter: brightness(1.15) contrast(1.05) saturate(1.1);
 }
+
 
 /* LOGO */
 .hero-logo-wrapper {
