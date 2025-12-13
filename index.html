@@ -1776,6 +1776,7 @@ button {
 
                 <div class="contact-grid">
                     <form class="contact-form"
+      id="contactForm"
       action="https://api.web3forms.com/submit"
       method="POST">
 
@@ -1810,6 +1811,7 @@ button {
     <button type="submit" class="btn btn-primary btn-sm">
         Submit
     </button>
+    <div id="form-status" style="margin-top:0.6rem;font-size:0.85rem;"></div>
 </form>
 
 
@@ -1977,6 +1979,42 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
         });
 
         document.getElementById(`pricing-${target}`).classList.add('active');
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = new FormData(form);
+
+        try {
+            const res = await fetch(form.action, {
+                method: "POST",
+                body: data,
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            const result = await res.json();
+
+            if (result.success) {
+                status.style.color = "#22c55e";
+                status.textContent = "Thanks! Your message was sent.";
+                form.reset();
+            } else {
+                status.style.color = "#f87171";
+                status.textContent = result.message || "Submission failed.";
+            }
+        } catch (err) {
+            status.style.color = "#f87171";
+            status.textContent = "Network error. Please try again.";
+        }
     });
 });
 </script>
