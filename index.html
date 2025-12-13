@@ -132,21 +132,44 @@ img { max-width:100%; display:block; }
 }
 
 /* MOBILE NAV */
+/* RESET BUTTON STYLES */
+button {
+    all: unset;
+}
+
 .hamburger {
-    display:none;
-    flex-direction:column;
-    gap:4px;
-    width:30px; height:30px;
-    cursor:pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
 }
+
 .hamburger span {
-    height:2px; width:100%;
-    background:#e5e7eb; border-radius:999px;
-    transition:.2s;
+    height: 2px;
+    width: 100%;
+    background: #e5e7eb;
+    border-radius: 999px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
 }
-.hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity:0; width:0; }
-.hamburger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 
 .mobile-nav {
     display:none;
@@ -219,11 +242,20 @@ img { max-width:100%; display:block; }
     margin-bottom:1.5rem;
 }
 .hero-logo {
-    width:180px; max-width:60vw;
-    opacity:.95;
-    filter:drop-shadow(0 8px 22px rgba(0,0,0,0.65));
-    animation:fadeInLogo 1.3s ease-out;
+    width: 320px;              /* Desktop size */
+    max-width: 85vw;           /* Prevent overflow on small screens */
+    opacity: 1;
+    filter: drop-shadow(0 14px 38px rgba(0,0,0,0.75));
+    animation: fadeInLogo 1.3s ease-out;
 }
+
+/* Mobile tuning */
+@media (max-width: 720px) {
+    .hero-logo {
+        width: 240px;
+    }
+}
+
 
 /* Green glow */
 .hero-logo-wrapper::before {
@@ -261,6 +293,20 @@ img { max-width:100%; display:block; }
     text-shadow:0 0 15px rgba(0,255,127,0.35);
 }
 
+.map-embed {
+    margin-top: 0.85rem;
+    border-radius: 16px;
+    border: 1px solid rgba(15,23,42,1);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #000;
+}
+
+.map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
         .eyebrow {
             display: inline-flex;
@@ -1270,9 +1316,7 @@ img { max-width:100%; display:block; }
                 <img src="media/logo-hot9.png" class="hero-logo" alt="HOT 9 GOLF Logo" />
             </div>
 
-            <h1 class="hero-title">
-                Turn your back nine into a <span class="hero-highlight">HOT 9</span>.
-            </h1>
+            
 
             <div class="hero-cta-row" style="display:flex; justify-content:center; gap:1rem;">
                 <a href="#contact" class="btn btn-primary">Book a Bay</a>
@@ -1311,17 +1355,28 @@ img { max-width:100%; display:block; }
         </div>
     </div>
 </section>
-
+<div class="container">
+        
+        
+        <div class="about-grid-modern">
+            <!-- LEFT CONTENT -->
+            <div class="about-copy">
+                <h2 class="section-title">
+                    HOT 9 GOLF is more than just a simulator facility.,
+                </h2>
+            </div>
+        </div>
+    </div>
 <section class="scroll-gallery">
     <div class="scroll-gallery-track">
 
         <div class="scroll-image-card">
-            <img src="media/gallery-1.jpg" alt="Simulator bays at HOT 9 GOLF">
+            <img src="media/gallery-5.jpeg" alt="Simulator bays at HOT 9 GOLF">
             
         </div>
 
         <div class="scroll-image-card">
-            <img src="media/gallery-2.jpg" alt="League night at HOT 9 GOLF">
+            <img src="media/gallery-6.jpeg" alt="League night at HOT 9 GOLF">
             
         </div>
         <div class="scroll-image-card">
@@ -1329,14 +1384,14 @@ img { max-width:100%; display:block; }
             
         </div>
         <div class="scroll-image-card">
-            <img src="media/gallery-4.jpg" alt="League night at HOT 9 GOLF">
+            <img src="media/download.jpeg" alt="League night at HOT 9 GOLF">
             
         </div>
     </div>
 </section>
 
         <!-- SIMULATORS / FACILITY -->
-        <section id="simulators">
+        <!-- <section id="simulators">
             <div class="container">
                 <div class="section-header">
                     <div class="section-title-block">
@@ -1392,10 +1447,10 @@ img { max-width:100%; display:block; }
                     </aside>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- MEMBERSHIPS / PRICING -->
-        <section id="memberships">
+        <!-- <section id="memberships">
     <div class="container">
         <div class="section-header">
             <div class="section-title-block">
@@ -1405,10 +1460,10 @@ img { max-width:100%; display:block; }
                 </h2>
                 
                 
-            </div>
+            </div> -->
 
             <!-- TOGGLE -->
-            <div class="pricing-toggle">
+            <!-- <div class="pricing-toggle">
                 <button class="toggle-btn active" data-target="hourly">
                     Per-Hour
                 </button>
@@ -1416,10 +1471,10 @@ img { max-width:100%; display:block; }
                     Memberships
                 </button>
             </div>
-        </div>
+        </div> -->
 
         <!-- PER HOUR -->
-        <div class="pricing-group active" id="pricing-hourly">
+        <!-- <div class="pricing-group active" id="pricing-hourly">
             <div class="card-grid">
                 <article class="plan-card">
                     <div class="plan-label">Starter</div>
@@ -1471,10 +1526,10 @@ img { max-width:100%; display:block; }
                     </div>
                 </article>
             </div>
-        </div>
+        </div> -->
 
         <!-- MEMBERSHIPS -->
-        <div class="pricing-group" id="pricing-membership">
+        <!-- <div class="pricing-group" id="pricing-membership">
             <div class="card-grid">
                 <article class="plan-card featured">
                     <div class="plan-badge">Most popular</div>
@@ -1530,7 +1585,7 @@ img { max-width:100%; display:block; }
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 
         <!-- LEAGUES / EVENTS -->
@@ -1642,7 +1697,7 @@ img { max-width:100%; display:block; }
         </section> -->
 
         <!-- FAQ -->
-        <section id="faq">
+        <!-- <section id="faq">
             <div class="container">
                 <div class="section-header">
                     <div class="section-title-block">
@@ -1700,17 +1755,17 @@ img { max-width:100%; display:block; }
                     </li>
                 </ul>
             </div>
-        </section>
+        </section> -->
 
         <!-- CONTACT -->
         <section id="contact">
             <div class="container">
                 <div class="section-header">
                     <div class="section-title-block">
-                        <div class="label-pill">
+                        <!-- <div class="label-pill">
                             <span class="label-dot"></span>
                             Contact & Booking
-                        </div>
+                        </div> -->
                         <h2 class="section-title">Ready to book your first HOT 9?</h2>
                         <p class="section-subtitle">
                             Use the form below or plug in your booking tool later.
@@ -1720,44 +1775,70 @@ img { max-width:100%; display:block; }
                 </div>
 
                 <div class="contact-grid">
-                    <form class="contact-form">
-                        <div class="field">
-                            <label for="name">Name</label>
-                            <input id="name" type="text" placeholder="Your name" />
-                        </div>
-                        <div class="field">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" placeholder="you@example.com" />
-                        </div>
-                        <div class="field">
-                            <label for="message">How can we help?</label>
-                            <textarea id="message" placeholder="Tell us if you’re booking a bay, league spot, or event."></textarea>
-                        </div>
-                        <button type="button" class="btn btn-primary btn-sm">
-                            Submit (connect to backend later)
-                        </button>
-                    </form>
+                    <form class="contact-form"
+      action="https://api.web3forms.com/submit"
+      method="POST">
+
+    <!-- REQUIRED -->
+    <input type="hidden" name="access_key" value="56e67f0b-6b6e-4c83-be05-255eb2e59f41">
+
+    <!-- OPTIONAL METADATA -->
+    <input type="hidden" name="subject" value="HOT 9 GOLF – New Contact Submission">
+    <input type="hidden" name="from_name" value="HOT 9 GOLF Website">
+    <input type="hidden" name="redirect" value="https://hot9golf.com/thank-you.html">
+
+    <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your name" required />
+    </div>
+
+    <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+    </div>
+
+    <div class="field">
+        <label for="message">How can we help?</label>
+        <textarea id="message" name="message"
+                  placeholder="Tell us if you’re booking a bay, league spot, or event."
+                  required></textarea>
+    </div>
+
+    <!-- Anti-spam (recommended) -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+    <button type="submit" class="btn btn-primary btn-sm">
+        Submit
+    </button>
+</form>
+
 
                     <aside class="map-card">
                         <div style="font-size:0.9rem;margin-bottom:0.4rem;font-weight:500;">
                             HOT 9 GOLF
                         </div>
                         <div style="font-size:0.85rem;color:var(--text-muted);">
-                            123 Hot Nine Drive<br />
-                            Your City, ST 00000<br />
+                            3201 W Alton Gloor Blvd Suite E<br />
+                            Brownsville, TX 78520<br />
                             <br />
-                            <strong>Hours</strong><br />
+                            <!-- <strong>Hours</strong><br />
                             Mon–Thu: 7am–10pm<br />
                             Fri–Sat: 7am–11pm<br />
-                            Sun: 10am–8pm
+                            Sun: 10am–8pm -->
                             <br /><br />
                             <strong>Contact</strong><br />
-                            (555) 123-4567<br />
-                            info@hot9golf.com
+                            (956) 572-2610<br />
+                            hot9golf@gmail.com
                         </div>
                         <div class="map-embed">
-                            Map / Google Maps embed placeholder
-                        </div>
+    <iframe
+        src="https://www.google.com/maps?q=3201%20W%20Alton%20Gloor%20Blvd%20Suite%20E%20Brownsville%20TX%2078520&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
                     </aside>
                 </div>
             </div>
