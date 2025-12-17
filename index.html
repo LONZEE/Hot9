@@ -1243,43 +1243,53 @@
 
                 <div class="contact-grid">
                     <form class="contact-form"
-                          id="contactForm"
-                          action="https://api.web3forms.com/submit"
-                          method="POST">
+      id="contactForm"
+      action="https://api.web3forms.com/submit"
+      method="POST">
 
-                        <!-- REQUIRED -->
-                        <input type="hidden" name="access_key" value="56e67f0b-6b6e-4c83-be05-255eb2e59f41">
+    <!-- REQUIRED -->
+    <input type="hidden" name="access_key" value="56e67f0b-6b6e-4c83-be05-255eb2e59f41">
 
-                        <!-- OPTIONAL METADATA -->
-                        <input type="hidden" name="subject" value="HOT 9 GOLF – New Contact Submission">
-                        <input type="hidden" name="from_name" value="HOT 9 GOLF Website">
-                        <input type="hidden" name="redirect" value="https://hot9golf.com/thank-you.html">
+    <!-- OPTIONAL METADATA -->
+    <input type="hidden" name="subject" value="HOT 9 GOLF – New Contact Submission">
+    <input type="hidden" name="from_name" value="HOT 9 GOLF Website">
+    <input type="hidden" name="redirect" value="https://hot9golf.com/thank-you.html">
 
-                        <div class="field">
-                            <label for="name">Name</label>
-                            <input id="name" name="name" type="text" placeholder="Your name" required />
-                        </div>
+    <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your name" required />
+    </div>
 
-                        <div class="field">
-                            <label for="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="you@example.com" required />
-                        </div>
+    <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone"
+               name="phone"
+               type="tel"
+               placeholder="(956) 555-1234"
+               required />
+    </div>
 
-                        <div class="field">
-                            <label for="message">How can we help?</label>
-                            <textarea id="message" name="message"
-                                      placeholder="Tell us if you’re booking a bay, league spot, or event."
-                                      required></textarea>
-                        </div>
+    <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+    </div>
 
-                        <!-- Anti-spam -->
-                        <input type="checkbox" name="botcheck" style="display:none;">
+    <div class="field">
+        <label for="message">How can we help?</label>
+        <textarea id="message" name="message"
+                  placeholder="Tell us if you’re booking a bay, league spot, or event."
+                  required></textarea>
+    </div>
 
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            Submit
-                        </button>
-                        <div id="form-status" style="margin-top:0.6rem;font-size:0.85rem;"></div>
-                    </form>
+    <!-- Anti-spam -->
+    <input type="checkbox" name="botcheck" style="display:none;">
+
+    <button type="submit" class="btn btn-primary btn-sm">
+        Submit
+    </button>
+    <div id="form-status" style="margin-top:0.6rem;font-size:0.85rem;"></div>
+</form>
+
 
                     <aside class="map-card">
                         <div style="font-size:0.9rem;margin-bottom:0.4rem;font-weight:500;">
