@@ -689,7 +689,7 @@
         .plan-card.featured {
             position:relative;
             border:1px solid rgba(248,250,252,0.5);
-            background:radial-gradient(circle at 0 0, rgba(248,113,22,0.12), transparent 60%), var(--card-bg);
+            background:radial-gradient(circle at 0 0, rgba(22, 248, 60, 0.12), transparent 60%), var(--card-bg);
         }
         .plan-badge {
             position:absolute;
@@ -884,6 +884,30 @@
     font-size:0.9rem;
     font-weight:600;
 }
+.chip-row {
+    padding-left:.3rem;   /* creates left breathing room */
+    display:grid;
+    gap:0.6rem;
+}
+.chip {
+    list-style:none;
+    position:relative;
+    padding-left:1.1rem;   /* space for bullet */
+    line-height:1.5;
+}
+
+/* Custom bullet */
+.chip::before {
+    content:"•";
+    position:absolute;
+    left:0;
+    top:0.05em;
+    color:var(--accent);
+    font-size:1.1rem;
+}
+.strip {
+    padding-left:1rem;
+}
 
     </style>
 </head>
@@ -970,7 +994,7 @@
             <div class="container">
                 <div class="about-grid-modern">
                     <div class="about-copy">
-                        
+                        <h2 class="section-title">About Hot 9 Golf</h2>
                         <h3 class="section-title-h3">
 From early mornings on the course to late-night swings in the backyard, golf has always been where I feel most at home. Over the years, I’ve learned that the heart of the game isn’t just in perfect shots—it’s in the community, the challenge, and the joy of improving one swing at a time.
 
@@ -997,7 +1021,7 @@ I’m excited to share this next chapter and to help others experience golf in a
         <section class="scroll-story" id="experience">
             <div class="story-media">
                 <img src="media/Tiger Woods Lights.jpg" class="story-image active" alt="Simulator bay view 1">
-                <img src="media/FullSwing/TPC-Sawgrass-Hole-17-06.jpg" class="story-image" alt="Simulator bay view 2">
+                <img src="media/FullSwing/Bluejack National 12.jpg" class="story-image" alt="Simulator bay view 2">
                 <!-- <img src="media/FullSwing/PGA-National-Hole-01-01.jpg" class="story-image" alt="Simulator bay view 3"> -->
             </div>
 
@@ -1137,7 +1161,8 @@ I’m excited to share this next chapter and to help others experience golf in a
                 </article>
                 
                 <!-- PAR 4 -->
-                <article class="plan-card">
+                <article class="plan-card featured">
+                    <div class="plan-badge">Most popular</div>
                     <div class="plan-label">Member Monthly Rate</div>
                     <div class="plan-name">Par 4</div>
                     <div class="plan-price">$249.99 / month</div>
@@ -1156,8 +1181,7 @@ I’m excited to share this next chapter and to help others experience golf in a
                 </article>
                 
                 <!-- PAR 3 -->
-                <article class="plan-card featured">
-                    <div class="plan-badge">Most popular</div>
+                <article class="plan-card ">
                     <div class="plan-label">Member Monthly Rate</div>
                     <div class="plan-name">Par 3</div>
                     <div class="plan-price">$159.99 / month</div>
@@ -1203,7 +1227,7 @@ I’m excited to share this next chapter and to help others experience golf in a
                 <div class="strip" style="grid-template-columns:1.4fr 2fr;">
                     <div>
                         <div class="strip-title">Member perks</div>
-                        <p class="section-subtitle">
+                        <p class="section-subtitle" style="margin-bottom: 2rem;">
                             Extra benefits that make a membership more than just hours on the bay.
                         </p>
                     </div>

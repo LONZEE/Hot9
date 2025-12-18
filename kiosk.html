@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HOT 9 GOLF | Pricing Kiosk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --accent:#00ff7f;
+    --accent-dark:#00cc66;
+    --bg:#020617;
+    --card:#0a0a0a;
+    --text:#ffffff;
+    --muted:#b5b5b5;
+    --radius:24px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+    width:100%;
+    height:100%;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Poppins", sans-serif;
+    overflow:hidden;
+}
+
+/* =====================
+   LAYOUT
+===================== */
+.kiosk {
+    height:100vh;
+    display:grid;
+    grid-template-rows:auto 1fr auto;
+}
+
+/* =====================
+   HEADER
+===================== */
+.kiosk-header {
+    padding:1.4rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.kiosk-logo {
+    width:260px;
+}
+
+.toggle {
+    display:flex;
+    gap:0.4rem;
+    background:rgba(0,0,0,0.5);
+    padding:0.35rem;
+    border-radius:999px;
+    border:1px solid rgba(0,255,127,0.4);
+}
+
+.toggle button {
+    padding:0.6rem 1.4rem;
+    border-radius:999px;
+    font-size:0.95rem;
+    font-weight:600;
+    cursor:pointer;
+    background:transparent;
+    border:none;
+    color:var(--muted);
+}
+
+.toggle button.active {
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    color:#000;
+    box-shadow:0 0 18px rgba(0,255,127,0.45);
+}
+
+/* =====================
+   GRID
+===================== */
+.grid {
+    padding:1.5rem 2rem;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+}
+
+.card {
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:1.6rem;
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 18px 40px rgba(0,0,0,0.7);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.card.featured {
+    border-color:var(--accent);
+    box-shadow:0 0 35px rgba(0,255,127,0.45);
+}
+
+.card h3 {
+    font-size:1.6rem;
+    margin-bottom:0.4rem;
+}
+
+.price {
+    font-size:2.2rem;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:0.6rem;
+}
+
+.note {
+    font-size:0.95rem;
+    color:var(--muted);
+    margin-bottom:0.9rem;
+}
+
+.features {
+    list-style:none;
+    display:grid;
+    gap:0.45rem;
+    font-size:0.95rem;
+}
+
+.features li::before {
+    content:"•";
+    color:var(--accent);
+    margin-right:0.4rem;
+}
+
+/* =====================
+   FOOTER CTA
+===================== */
+.kiosk-footer {
+    padding:1.2rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#020617;
+}
+
+.kiosk-cta {
+    padding:0.9rem 2.4rem;
+    font-size:1.15rem;
+    font-weight:700;
+    border-radius:999px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    color:#000;
+    cursor:pointer;
+}
+
+.kiosk-note {
+    font-size:0.9rem;
+    color:var(--muted);
+}
+
+/* =====================
+   VISIBILITY
+===================== */
+.pricing-group { display:none; }
+.pricing-group.active { display:grid; }
+
+/* =====================
+   RESPONSIVE (TV SAFE)
+===================== */
+@media (max-width:1200px) {
+    .grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="kiosk">
+
+    <!-- HEADER -->
+    <div class="kiosk-header">
+        <img src="media/logo-hot9.png" class="kiosk-logo" alt="HOT 9 GOLF">
+
+        <div class="toggle">
+            <button class="toggle-btn active" data-target="hourly">Per-Hour</button>
+            <button class="toggle-btn" data-target="membership">Memberships</button>
+        </div>
+    </div>
+
+    <!-- HOURLY -->
+    <div class="grid pricing-group active" id="pricing-hourly">
+        <div class="card">
+            <h3>Daytime Bay</h3>
+            <div class="price">$44.99 / hr</div>
+            <div class="note">8am–4pm • up to 4 guests</div>
+            <ul class="features">
+                <li>Standard bay</li>
+                <li>Extra guests $9.99</li>
+                <li>Same-day add hour $24.99</li>
+            </ul>
+        </div>
+
+        <div class="card featured">
+            <h3>Evening Bay</h3>
+            <div class="price">$54.99 / hr</div>
+            <div class="note">4pm–10pm • prime time</div>
+            <ul class="features">
+                <li>Most popular time</li>
+                <li>Extra guests $9.99</li>
+                <li>Same-day add hour $24.99</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Widescreen Bay</h3>
+            <div class="price">$19.99 / hr</div>
+            <div class="note">Add-on • up to 6 guests</div>
+            <ul class="features">
+                <li>Immersive widescreen</li>
+                <li>Perfect for groups</li>
+                <li>Upgrade any booking</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MEMBERSHIPS -->
+    <div class="grid pricing-group" id="pricing-membership">
+        <div class="card featured">
+            <h3>Par 3</h3>
+            <div class="price">$159.99 / mo</div>
+            <div class="note">6 hours • 1 tee time</div>
+            <ul class="features">
+                <li>Most popular</li>
+                <li>Perfect weekly play</li>
+                <li>Add hours anytime</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Par 4</h3>
+            <div class="price">$249.99 / mo</div>
+            <div class="note">10 hours • 2 tee times</div>
+            <ul class="features">
+                <li>Frequent players</li>
+                <li>Bring friends</li>
+                <li>Priority booking</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Par 5</h3>
+            <div class="price">$299.99 / mo</div>
+            <div class="note">15 hours • up to 5 guests</div>
+            <ul class="features">
+                <li>Best value</li>
+                <li>No widescreen fees</li>
+                <li>Share with family</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="kiosk-footer">
+        <div class="kiosk-note">
+            Ask the front desk or scan to book
+        </div>
+        <div class="kiosk-cta" onclick="window.location.href='https://hot9golf.com/#contact'">
+            Book / Join Now
+        </div>
+    </div>
+
+</div>
+
+<script>
+/* TOGGLE */
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.pricing-group').forEach(g => g.classList.remove('active'));
+        document.getElementById(`pricing-${btn.dataset.target}`).classList.add('active');
+    });
+});
+
+/* IDLE RESET */
+let idle;
+function resetIdle() {
+    clearTimeout(idle);
+    idle = setTimeout(() => location.reload(), 180000);
+}
+["touchstart","click","mousemove"].forEach(e =>
+    document.addEventListener(e, resetIdle)
+);
+resetIdle();
+</script>
+
+</body>
+</html>
