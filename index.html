@@ -70,12 +70,23 @@
             justify-content:space-between;
             padding:0.85rem 0;
         }
+        .brand {
+    display:flex;
+    align-items:center;
+    gap:0.55rem;
+}
+
         .brand-text { display:flex; flex-direction:column; }
         .brand-title {
             font-size:1.05rem;
             font-weight:700;
             letter-spacing:.12em;
         }
+.hero-nav {
+    width:34px;
+    height:auto;
+    max-width:none;
+}
 
         .nav-links {
             display:flex;
@@ -294,6 +305,11 @@
             font-weight:600;
             margin-bottom:0.4rem;
         }
+        .section-title-h3 {
+            font-size:1rem;
+            font-weight:400;
+            margin-bottom:0.4rem;
+        }
         .section-subtitle {
             font-size:0.9rem;
             color:var(--text-muted);
@@ -373,12 +389,26 @@
             height:100%;
             object-fit:cover;
         }
+/* VIDEO CARD OVERRIDE */
+.video-card {
+    overflow:visible; /* allow full frame */
+    background:#000;
+}
+
+.about-video {
+    width:100%;
+    height:auto;           /* IMPORTANT */
+    max-height:520px;      /* keeps layout clean */
+    object-fit:contain;    /* SHOW FULL VIDEO */
+    border-radius:var(--radius-xl);
+    display:block;
+}
 
         /* SCROLL STORY */
-        .scroll-story {
-            position:relative;
-            /* height:300vh;  REMOVED to prevent overlap */
-        }
+       .scroll-story {
+    position:relative;
+    background:#020617; /* same as site background */
+}
         .story-media {
             position:sticky;
             top:0;
@@ -401,22 +431,59 @@
                        filter 0.8s ease;
             will-change:transform;
         }
+        .story-media::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 60%,
+            rgba(2,6,23,0.75) 85%,
+            #020617 100%
+        );
+}
+
         .story-image.active {
             opacity:1;
             transform:scale(1);
             filter:blur(0);
         }
+
+        /* Top + bottom fade */
+.scroll-story::before,
+.scroll-story::after {
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    height:140px;
+    z-index:4;
+    pointer-events:none;
+}
+
+/* Fade IN from previous section */
+.scroll-story::before {
+    top:0;
+    background:linear-gradient(
+        to bottom,
+        #020617 0%,
+        rgba(2,6,23,0.85) 40%,
+        rgba(2,6,23,0.0) 100%
+    );
+}
         .story-media::after {
-            content:"";
-            position:absolute;
-            inset:0;
-            background:radial-gradient(
-                circle at 70% 40%,
-                rgba(2,6,23,0.2),
-                rgba(2,6,23,0.75)
-            );
-            z-index:2;
-        }
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(to top, rgba(2,6,23,0.9), transparent 35%),
+        linear-gradient(to bottom, rgba(2,6,23,0.9), transparent 35%);
+    z-index:2;
+}
+
         .story-steps {
             position:relative;
             z-index:3;
@@ -789,6 +856,35 @@
                 font-size:1.05rem;
             }
         }
+        .mobile-nav-close {
+    position:absolute;
+    top:1rem;
+    right:1.25rem;
+    background:rgba(15,23,42,0.9);
+    border:1px solid rgba(148,163,184,0.4);
+    color:#fff;
+    font-size:1.6rem;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.btn-sm {
+    font-size:0.8rem;
+    padding:0.5rem 1.1rem;
+}
+
+.contact-form .btn {
+    width:100%;
+    justify-content:center;
+    padding:0.75rem;
+    font-size:0.9rem;
+    font-weight:600;
+}
+
     </style>
 </head>
 <body>
@@ -798,10 +894,10 @@
         <div class="container">
             <div class="nav-inner">
                 <a href="#top" class="brand" data-scroll>
-                    <div class="brand-text">
-                        <span class="brand-title">HOT 9 GOLF</span>
-                    </div>
-                </a>
+    <img src="media/Untitled design (14).png" class="hero-nav" alt="HOT 9 GOLF Logo" />
+    <span class="brand-title">HOT 9 GOLF</span>
+</a>
+
 
                 <nav class="nav-links">
                     <a class="nav-link" data-scroll href="#about">About</a>
@@ -825,6 +921,7 @@
         <!-- Mobile Nav -->
         <div class="mobile-nav" id="mobileNav">
             <div class="mobile-nav-inner">
+                <button class="mobile-nav-close" aria-label="Close menu">&times;</button>
                 <a class="mobile-nav-link" data-scroll href="#about">About</a>
                 <!-- <a class="mobile-nav-link" data-scroll href="#simulators">Simulators</a> -->
                 <a class="mobile-nav-link" data-scroll href="#memberships">Memberships</a>
@@ -873,46 +970,34 @@
             <div class="container">
                 <div class="about-grid-modern">
                     <div class="about-copy">
-                        <h2 class="section-title">
-                            "Driven by a lifelong love for the game,
-                            I opened Hot 9 Golf to bring the best parts of golf indoors. We provide a welcoming space for players of all levels to practice, socialize, and play world-class courses in any weather. Let’s play a Hot 9!"
-                        </h2>
-                        <p>
-                            - Genaro Mercado
-                        </p>
-                        <!-- <div class="about-features">
-                            <div class="about-feature">
-                                <span class="feature-dot"></span>
-                                <span>Tour-level simulator bays with detailed ball and club data.</span>
-                            </div>
-                            <div class="about-feature">
-                                <span class="feature-dot"></span>
-                                <span>League nights, events, and private bay rentals.</span>
-                            </div>
-                            <div class="about-feature">
-                                <span class="feature-dot"></span>
-                                <span>Beginner-friendly environment with support for all skill levels.</span>
-                            </div>
-                        </div> -->
+                        
+                        <h3 class="section-title-h3">
+From early mornings on the course to late-night swings in the backyard, golf has always been where I feel most at home. Over the years, I’ve learned that the heart of the game isn’t just in perfect shots—it’s in the community, the challenge, and the joy of improving one swing at a time.
+
+That passion is what inspired me to open my own golf simulator business, Hot 9 Golf. I wanted to create a space where golfers of all levels can play, practice, and have fun—no matter the weather or season. Whether you’re looking to sharpen your skills, try world-class courses, or simply enjoy a great time with friends, my goal is to bring the best parts of the game indoors.
+
+I’m excited to share this next chapter and to help others experience golf in a new, innovative, and welcoming way. Let’s play a Hot 9!
+
+                        </h3>
+                        
+                        
                     </div>
 
-                    <div class="about-image-card">
-                        <img src="media/gallery-3.jpg" alt="Indoor golf bay at HOT 9 GOLF" />
-                    </div>
+                    <div class="about-image-card video-card">
+    <video class="about-video" muted loop playsinline>
+        <source src="media/Full Swing Pro 2.0 Simulator.mp4" type="video/mp4" />
+    </video>
+</div>
+
                 </div>
             </div>
         </section>
-<!-- CERTIFICATION STRIP -->
-        <section class="cert-strip">
-            <div class="cert-inner">
-                <img src="media/Fullswinglogo.png" alt="Official simulator partners" />
-            </div>
-        </section>
+
         <!-- SCROLL STORY -->
         <section class="scroll-story" id="experience">
             <div class="story-media">
-                <img src="media/gallery-6.jpeg" class="story-image active" alt="Simulator bay view 1">
-                <img src="media/FullSwing/Short Game Area Map.jpg" class="story-image" alt="Simulator bay view 2">
+                <img src="media/Tiger Woods Lights.jpg" class="story-image active" alt="Simulator bay view 1">
+                <img src="media/FullSwing/TPC-Sawgrass-Hole-17-06.jpg" class="story-image" alt="Simulator bay view 2">
                 <!-- <img src="media/FullSwing/PGA-National-Hole-01-01.jpg" class="story-image" alt="Simulator bay view 3"> -->
             </div>
 
@@ -927,64 +1012,26 @@
                     </div>
 
                     <div class="story-step">
-                        <h2>See every detail of your swing</h2>
-                        <p>
-                            Get instant feedback on spin, launch, face angle, and club path so you always know why the ball flew the way it did.
-                        </p>
-                    </div>
+    <h2>Play iconic courses from around the world</h2>
+    <p>
+        Tee it up on a wide selection of world-class courses, from legendary championship layouts to famous resort tracks — all without leaving the bay.
+    </p>
+</div>
 
 
-                    <!-- <div class="story-step">
-                        <h2>Play. Compete. Repeat.</h2>
-                        <p>
-                            Jump into league play, set up closest-to-pin battles, or host a private event with your crew. 
-                            Play famous courses in a fraction of the time, no lost balls, no weather delays, and no waiting on the group in front. 
-                            When your schedule is tight, HOT 9 lets you get your golf fix on your terms.
-                        </p>
-                    </div> -->
+
 
                 </div>
             </div>
         </section>
 
-        <!-- SIMULATORS / FACILITY -->
-        <!-- <section id="simulators">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-title-block">
-                        <h2 class="section-title">Simulators & Facility</h2>
-                        <p class="section-subtitle">
-                            Practice on the range, play full rounds, or run closest-to-pin games—indoors, year-round.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="two-col">
-                    <div>
-                        <div class="sim-card">
-                            <h3 style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">Tour-quality simulators</h3>
-                            <p>
-                                Step into a bay and play iconic courses with realistic ball flight and detailed feedback
-                                on every swing. Dial in your distances, test clubs, or play a quick 9 with friends.
-                            </p>
-                            <div class="sim-tag-row">
-                                <span class="sim-tag">Ball & club tracking</span>
-                                <span class="sim-tag">Practice range</span>
-                                <span class="sim-tag">Full course play</span>
-                                <span class="sim-tag">Games & challenges</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="sim-photo">
-                            <img src="media/gallery-6.jpeg" alt="HOT 9 GOLF simulator bay">
-                        </div>
-                    </div>
-                </div>
+       
+<!-- CERTIFICATION STRIP -->
+        <section class="cert-strip">
+            <div class="cert-inner">
+                <img src="media/Fullswinglogo.png" alt="Official simulator partners" />
             </div>
-        </section> -->
-
+        </section>
         <!-- MEMBERSHIPS / PRICING -->
         <section id="memberships">
     <div class="container">
@@ -1029,7 +1076,7 @@
                 <!-- 4pm–10pm -->
                 <article class="plan-card">
                     <div class="plan-label">Non-Member</div>
-                    <div class="plan-name">Evening & Late</div>
+                    <div class="plan-name">Evening Bay</div>
                     <div class="plan-price">$54.99 / hour</div>
                     <div class="plan-note">4pm–10pm • bay for up to 4 guests total</div>
                     <ul class="plan-features">
@@ -1047,7 +1094,7 @@
                 <!-- WIDESCREEN ROOM -->
                 <article class="plan-card">
                     <div class="plan-label">Upgrade</div>
-                    <div class="plan-name">Widescreen Room</div>
+                    <div class="plan-name">Private Widescreen Bay</div>
                     <div class="plan-price">$19.99 / hour</div>
                     <div class="plan-note">
                         Add-on for widescreen bay • room for up to 6 guests total
@@ -1055,7 +1102,7 @@
                     <ul class="plan-features">
                         <li class="plan-feature">Upgrade any existing bay booking</li>
                         <li class="plan-feature">Extra guests up to 5 at $14.99 / guest</li>
-                        <li class="plan-feature">Perfect for parties, watch nights, and groups</li>
+                       
                     </ul>
                     <div class="plan-cta">
                         <a class="btn btn-outline btn-sm" data-scroll href="#contact">
@@ -1069,6 +1116,45 @@
         <!-- MEMBERSHIPS -->
         <div class="pricing-group" id="pricing-membership">
             <div class="card-grid">
+                <!-- PAR 5 -->
+                <article class="plan-card featured">
+                    <div class="plan-label">Member Monthly Rate</div>
+                    <div class="plan-badge">Best value</div>
+                    <div class="plan-name">Par 5</div>
+                    <div class="plan-price">$299.99 / month</div>
+                    <div class="plan-note">15 hours per month • 2 active tee times • up to 5 guests</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Book tee times up to 10 days in advance</li>
+                        <li class="plan-feature">No upcharge for widescreen bay</li>
+                        <li class="plan-feature">Share time with one family member</li>
+                        <li class="plan-feature">Best value for heavy use and bigger groups</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <a class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Join Par 5
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- PAR 4 -->
+                <article class="plan-card">
+                    <div class="plan-label">Member Monthly Rate</div>
+                    <div class="plan-name">Par 4</div>
+                    <div class="plan-price">$249.99 / month</div>
+                    <div class="plan-note">10 hours per month • 2 active tee times • up to 3 guests</div>
+                    <ul class="plan-features">
+                        <li class="plan-feature">Book tee times up to 7 days in advance</li>
+                        <li class="plan-feature">Widescreen bay upcharge $9.99 per visit</li>
+                        <li class="plan-feature">Widescreen extra guests add-on $14.99 (up to 5 guests)</li>
+                        
+                    </ul>
+                    <div class="plan-cta">
+                        <a class="btn btn-outline btn-sm" data-scroll href="#contact">
+                            Join Par 4
+                        </a>
+                    </div>
+                </article>
+                
                 <!-- PAR 3 -->
                 <article class="plan-card featured">
                     <div class="plan-badge">Most popular</div>
@@ -1086,44 +1172,6 @@
                     <div class="plan-cta">
                         <a class="btn btn-primary btn-sm" data-scroll href="#contact">
                             Join Par 3
-                        </a>
-                    </div>
-                </article>
-
-                <!-- PAR 4 -->
-                <article class="plan-card">
-                    <div class="plan-label">Member Monthly Rate</div>
-                    <div class="plan-name">Par 4</div>
-                    <div class="plan-price">$249.99 / month</div>
-                    <div class="plan-note">10 hours per month • 2 active tee times • up to 3 guests</div>
-                    <ul class="plan-features">
-                        <li class="plan-feature">Book tee times up to 7 days in advance</li>
-                        <li class="plan-feature">Widescreen bay upcharge $9.99 per visit</li>
-                        <li class="plan-feature">Widescreen extra guests add-on $14.99 (up to 5 guests)</li>
-                        <li class="plan-feature">Great for small groups and regular league nights</li>
-                    </ul>
-                    <div class="plan-cta">
-                        <a class="btn btn-outline btn-sm" data-scroll href="#contact">
-                            Join Par 4
-                        </a>
-                    </div>
-                </article>
-
-                <!-- PAR 5 -->
-                <article class="plan-card">
-                    <div class="plan-label">Member Monthly Rate</div>
-                    <div class="plan-name">Par 5</div>
-                    <div class="plan-price">$299.99 / month</div>
-                    <div class="plan-note">15 hours per month • 2 active tee times • up to 5 guests</div>
-                    <ul class="plan-features">
-                        <li class="plan-feature">Book tee times up to 10 days in advance</li>
-                        <li class="plan-feature">No upcharge for widescreen bay</li>
-                        <li class="plan-feature">Share time with one family member</li>
-                        <li class="plan-feature">Best value for heavy use and bigger groups</li>
-                    </ul>
-                    <div class="plan-cta">
-                        <a class="btn btn-outline btn-sm" data-scroll href="#contact">
-                            Join Par 5
                         </a>
                     </div>
                 </article>
@@ -1147,6 +1195,7 @@
                         </a>
                     </div>
                 </article>
+                
             </div>
 
             <!-- MEMBER PERKS / CORPORATE -->
@@ -1159,75 +1208,23 @@
                         </p>
                     </div>
                     <div class="chip-row">
-                        <span class="chip">7am tee times for members (8am for everyone else)</span>
-                        <span class="chip">Additional tee times: $24.99 first hour, $9.99 each additional hour</span>
-                        <span class="chip">Additional guests: $9.99 (up to 3)</span>
-                        <span class="chip">Widescreen room rental: $34.99 first hour, $14.99 additional hour</span>
-                        <span class="chip">Widescreen add-on guests: $14.99 (up to 5)</span>
+                        
+                        <li class="chip">7am tee times for members (8am for everyone else)</li>
+                        <li class="chip">Additional tee times: $24.99 first hour, $9.99 each additional hour</li>
+                        <li class="chip">Additional guests: $9.99 (up to 3)</li>
+                        <li class="chip">Widescreen room rental: $34.99 first hour, $14.99 additional hour</li>
+                        <li class="chip">Widescreen add-on guests: $14.99 (up to 5)</li>
                     </div>
                 </div>
 
-                <div class="strip" style="grid-template-columns:2fr 1fr;">
-                    <div>
-                        <div class="strip-title">Corporate & group deals</div>
-                        <p class="section-subtitle">
-                            Looking to host a standing league, team outing, or client night? We offer custom
-                            corporate packages built around your schedule and hours.
-                        </p>
-                    </div>
-                    <div style="text-align:right;">
-                        <a class="btn btn-outline btn-sm" data-scroll href="#contact">Ask about corporate deals</a>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
 </section>
 
 
-        <!-- FAQ -->
-        <!-- <section id="faq">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-title-block">
-                        <h2 class="section-title">Frequently asked questions</h2>
-                        <p class="section-subtitle">
-                            New to indoor golf or HOT 9? Start here.
-                        </p>
-                    </div>
-                </div>
-
-                <ul class="faq-list">
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span>Do I need to bring my own clubs?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            You’re welcome to bring your own clubs, but we also have clubs available to use in-house.
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span>How long does a round take on the simulator?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Most players can finish 9 holes in about an hour and 18 holes in 1.5–2 hours depending on group size and pace.
-                        </div>
-                    </li>
-                    <li class="faq-item">
-                        <div class="faq-question">
-                            <span>Can beginners book a bay?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            Absolutely. Indoor golf is a great way to learn without the pressure of the course. We’re happy to help you get set up.
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section> -->
+   
 
         <!-- CONTACT -->
         <section id="contact">
@@ -1491,6 +1488,39 @@
             });
         });
     </script>
+    <script>
+    const closeBtn = document.querySelector('.mobile-nav-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMobileNav);
+    }
+
+    // Optional: tap outside content closes menu
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) closeMobileNav();
+    });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.querySelector(".about-video");
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+                video.muted = false;
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        },
+        {
+            threshold: 0.6 /* 60% visible */
+        }
+    );
+
+    observer.observe(video);
+});
+</script>
 
 </body>
 </html>
