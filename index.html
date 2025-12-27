@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>HOT 9 GOLF | Indoor Golf • Leagues • Lessons</title>
+    <title>HOT 9 GOLF | Indoor Golf Simulators</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="HOT 9 GOLF - indoor golf, simulators, leagues, and lessons." />
 
@@ -412,12 +412,20 @@
 
 .about-video {
     width:100%;
-    height:auto;           /* IMPORTANT */
-    max-height:520px;      /* keeps layout clean */
-    object-fit:contain;    /* SHOW FULL VIDEO */
+    max-height:520px;
+    aspect-ratio:16/9;
     border-radius:var(--radius-xl);
+    overflow:hidden;
+    background:#000; /* optional black background */
     display:block;
 }
+
+.about-video iframe {
+    width:100%;
+    height:100%;
+    border:0;
+}
+
 
         /* SCROLL STORY */
        .scroll-story {
@@ -1030,7 +1038,7 @@
                     <div class="about-copy">
     <h2 class="section-title">About Hot 9 Golf</h2>
 
-    <p class="about-lead">
+    <!-- <p class="about-lead">
         From early mornings on the course to late-night swings in the backyard, golf has always been where I feel most at home.
     </p>
 
@@ -1051,14 +1059,47 @@
 
     <p class="about-signoff">
         Let’s play a Hot 9!!!!
-    </p>
+    </p> -->
+
+    <p class="about-lead">
+    From early mornings on the course to late-night practice sessions, golf has always been at the center of what we do.
+</p>
+
+<p>
+    Over the years, we’ve learned that the heart of the game isn’t just perfect shots — it’s the challenge, the community,
+    and the pursuit of getting better one swing at a time.
+</p>
+
+<p>
+    That passion is what inspired <strong>Hot 9 Golf</strong>.
+    We built a space where golfers of all skill levels can play, practice, and compete year-round — regardless of weather or season.
+</p>
+
+<p>
+    Whether you’re dialing in your swing, playing iconic courses from around the world,
+    or spending time with friends, our goal is to deliver a premium indoor golf experience.
+</p>
+
+<p class="about-signoff">
+    Let’s play a Hot 9.
+</p>
+
 </div>
 
 
                     <div class="about-image-card video-card">
-    <video class="about-video" muted loop playsinline>
+    <!-- <video class="about-video" muted loop playsinline>
         <source src="media/Full Swing Pro 2.0 Simulator.mp4" type="video/mp4" />
-    </video>
+    </video> -->
+    <div class="about-video">
+    <iframe
+        src="https://www.youtube.com/embed/ydl1Kn4nCvA?autoplay=1&mute=1&loop=1&playlist=ydl1Kn4nCvA&rel=0&modestbranding=1&playsinline=1"
+        title="Full Swing Pro 2.0 Simulator"
+        allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+
 </div>
 
                 </div>
@@ -1077,9 +1118,9 @@
                 <div class="container">
                     
                     <div class="story-step active">
-                        <h2>Tour-level simulator bays</h2>
+                        <h2>Tour-level bays</h2>
                         <p>
-                            With every shot tracked for carry, total distance, spin, and dispersion in real time, Full Swing is a true game-improvement simulator.
+                            With every shot tracked for carry, total distance, spin, and dispersion in real time, Full Swing delivers tour-level shot data for real game improvement.
                         </p>
                     </div>
 
@@ -1110,7 +1151,7 @@
         <div class="section-header">
             <div class="section-title-block">
                 <h2 class="section-title">
-                    Simple plans for practice, play, or full-on obsession.
+                    Simple plans for practice, play, or serious improvement.
                 </h2>
                 <p class="section-subtitle">
                     Non-member hourly options or monthly memberships with banked hours and member perks.
@@ -1132,7 +1173,7 @@
                     <div class="plan-label">Non-Member</div>
                     <div class="plan-name">Daytime Bay</div>
                     <div class="plan-price">$44.99 / hour</div>
-                    <div class="plan-note">8am–4pm • bay for up to 4 guests total</div>
+                    <div class="plan-note">8a.m.–4p.m. • bay for up to 4 guests total</div>
                     <ul class="plan-features">
                         <li class="plan-feature">Standard simulator bay</li>
                         <li class="plan-feature">Additional guests (1–3) at $14.99</li>
@@ -1150,7 +1191,7 @@
                     <div class="plan-label">Non-Member</div>
                     <div class="plan-name">Evening Bay</div>
                     <div class="plan-price">$54.99 / hour</div>
-                    <div class="plan-note">4pm–10pm • bay for up to 4 guests total</div>
+                    <div class="plan-note">4p.m.–10p.m. • bay for up to 4 guests total</div>
                     <ul class="plan-features">
                         <li class="plan-feature">Prime-time bay access</li>
                         <li class="plan-feature">Additional guests (1–3) at $14.99</li>
@@ -1176,7 +1217,7 @@
                     </ul>
                     <div class="plan-cta">
                         <a class="btn btn-outline btn-sm" data-scroll href="#contact">
-                            Add widescreen room
+                            Add widescreen bay 
                         </a>
                     </div>
                 </article>
@@ -1260,7 +1301,7 @@
                     </ul>
                     <div class="plan-cta">
                         <a class="btn btn-outline btn-sm" data-scroll href="#contact">
-                            Ask about student plan
+                            Join Student Plan
                         </a>
                     </div>
                 </article>
@@ -1278,7 +1319,7 @@
                     </div>
                     <div class="chip-row">
                         
-                        <li class="chip">7am tee times for members (8am for everyone else)</li>
+                        <li class="chip">7:00 a.m. tee times for members (8:00 a.m. for non-members)</li>
                         <li class="chip">Additional tee times: $24.99 first hour, $9.99 each additional hour</li>
                         <li class="chip">Additional guests: $9.99 (up to 3)</li>
                         <li class="chip">Widescreen room rental: $34.99 first hour, $14.99 additional hour</li>
@@ -1572,7 +1613,7 @@
         if (e.target === mobileNav) closeMobileNav();
     });
 </script>
-<script>
+<!-- <script>
 document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector(".about-video");
     if (!video) return;
@@ -1593,7 +1634,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(video);
 });
-</script>
+</script> -->
 
 </body>
 </html>
