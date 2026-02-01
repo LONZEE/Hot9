@@ -1,0 +1,10 @@
+# robots.txt for HOT 9 GOLF
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+
+# Sitemap location
+Sitemap: https://hot9golf.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
