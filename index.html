@@ -1863,7 +1863,7 @@ function trackEvent(eventName, params = {}) {
         <button class="booking-modal-close" aria-label="Close booking">&times;</button>
         <div class="booking-modal-spinner">Loading…</div>
         <div class="booking-modal-scroll-wrap">
-            <iframe id="bookingIframe" class="booking-modal-iframe" src="" title="HOT 9 GOLF Booking" allow="payment"></iframe>
+            <iframe id="bookingIframe" class="booking-modal-iframe" src="" title="HOT 9 GOLF Booking" allow="payment; storage-access" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation allow-storage-access-by-user-activation" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </div>
@@ -1979,12 +1979,15 @@ body.booking-modal-open {
 <script>
 /* ── Booking iframe modal logic ── */
 (function() {
-    const modal   = document.getElementById('bookingModal');
-    const iframe  = document.getElementById('bookingIframe');
-    const overlay = modal.querySelector('.booking-modal-overlay');
-    const closeBtn= modal.querySelector('.booking-modal-close');
-
+    var modal   = document.getElementById('bookingModal');
+    var iframe  = document.getElementById('bookingIframe');
+    var overlay = modal.querySelector('.booking-modal-overlay');
+    var closeBtn= modal.querySelector('.booking-modal-close');
     var savedScrollY = 0;
+
+    // Detect Safari (desktop & iOS) — it blocks third-party cookies in iframes
+    var isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent)
+                || (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
 
     function openBookingModal(url) {
         savedScrollY = window.scrollY || window.pageYOffset || 0;
@@ -1996,7 +1999,7 @@ body.booking-modal-open {
 
     function closeBookingModal() {
         modal.style.display = 'none';
-        iframe.src = '';          // stop loading / free memory
+        iframe.src = '';
         document.body.classList.remove('booking-modal-open');
         document.body.style.top = '';
         window.scrollTo(0, savedScrollY);
@@ -2011,10 +2014,17 @@ body.booking-modal-open {
     // Intercept all uschedule links
     document.addEventListener('click', function(e) {
         var link = e.target.closest('a[href*="clients.uschedule.com"]');
-        if (link) {
-            e.preventDefault();
-            openBookingModal(link.href);
+        if (!link) return;
+        e.preventDefault();
+
+        // Safari blocks third-party cookies in iframes (ITP),
+        // so login/sessions won't work. Open in new tab instead.
+        if (isSafari) {
+            window.open(link.href, '_blank', 'noopener,noreferrer');
+            return;
         }
+
+        openBookingModal(link.href);
     });
 })();
 </script>
