@@ -506,146 +506,58 @@
             height:100%;
             object-fit:cover;
         }
-/* VIDEO CARD OVERRIDE */
-.video-card {
-    overflow:visible; /* allow full frame */
-    background:#000;
+/* VIDEO SHOWCASE SECTION */
+.video-showcase {
+    padding:4rem 0;
+    background:var(--bg-dark);
 }
-
-.about-video {
+.video-showcase .about-video {
     width:100%;
-    max-height:520px;
+    max-width:900px;
+    margin:0 auto;
     aspect-ratio:16/9;
     border-radius:var(--radius-xl);
     overflow:hidden;
-    background:#000; /* optional black background */
-    display:block;
+    background:#000;
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
 }
-
-.about-video iframe {
+.video-showcase .about-video iframe {
     width:100%;
     height:100%;
     border:0;
 }
 
 
-        /* SCROLL STORY */
-       .scroll-story {
-    position:relative;
-    background:#020617; /* same as site background */
-}
-        .story-media {
-            position:sticky;
-            top:0;
-            height:100vh;
-            width:100%;
-            overflow:hidden;
-            z-index:1;
-        }
-        .story-image {
+        /* GALLERY CARD OVERLAYS */
+        .gallery-card-overlay {
             position:absolute;
-            inset:0;
-            width:100%;
-            height:100%;
-            object-fit:cover;
+            bottom:0; left:0; right:0;
+            padding:2rem 2rem 1.6rem;
+            background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 55%, transparent 100%);
+            z-index:4;
             opacity:0;
-            transform:scale(1.05);
-            filter:blur(8px);
-            transition:opacity 0.8s ease,
-                       transform 1.2s cubic-bezier(0.22,1,0.36,1),
-                       filter 0.8s ease;
-            will-change:transform;
+            transform:translateY(8px);
+            transition:opacity 0.5s ease, transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+            pointer-events:none;
         }
-        .story-media::before {
-    content:"";
-    position:absolute;
-    inset:0;
-    z-index:3;
-    pointer-events:none;
-    background:
-        linear-gradient(
-            to bottom,
-            transparent 60%,
-            rgba(2,6,23,0.75) 85%,
-            #020617 100%
-        );
-}
-
-        .story-image.active {
-            opacity:1;
-            transform:scale(1);
-            filter:blur(0);
-        }
-
-        /* Top + bottom fade */
-.scroll-story::before,
-.scroll-story::after {
-    content:"";
-    position:absolute;
-    left:0;
-    width:100%;
-    height:140px;
-    z-index:4;
-    pointer-events:none;
-}
-
-/* Fade IN from previous section */
-.scroll-story::before {
-    top:0;
-    background:linear-gradient(
-        to bottom,
-        #020617 0%,
-        rgba(2,6,23,0.85) 40%,
-        rgba(2,6,23,0.0) 100%
-    );
-}
-        .story-media::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(to top, rgba(2,6,23,0.9), transparent 35%),
-        linear-gradient(to bottom, rgba(2,6,23,0.9), transparent 35%);
-    z-index:2;
-}
-
-        .story-steps {
-            position:relative;
-            z-index:3;
-        }
-        .story-step {
-            min-height:100vh;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            max-width:640px;
-            color:white;
-            opacity:0;
-            transform:translateY(40px);
-            transition:opacity 0.6s ease,
-                       transform 0.8s cubic-bezier(0.22,1,0.36,1);
-        }
-        .story-step.active {
+        .gallery-card.active .gallery-card-overlay {
             opacity:1;
             transform:translateY(0);
+            pointer-events:auto;
+            transition-delay:0.15s;
         }
-        .story-logo {
-            width:140px;
-            margin-bottom:1.5rem;
-            opacity:0;
-            transform:translateY(16px) scale(0.96);
-            transition:opacity 0.6s ease,
-                       transform 0.8s cubic-bezier(0.22,1,0.36,1);
+        .gallery-card-overlay h3 {
+            font-size:1.1rem;
+            font-weight:600;
+            margin-bottom:0.3rem;
+            color:#fff;
+            letter-spacing:-0.01em;
         }
-        .story-step h2 {
-            font-size:clamp(2.4rem,4vw,3.4rem);
-            line-height:1.05;
-            margin-bottom:0.75rem;
-        }
-        .story-step p {
-            font-size:1.15rem;
-            color:rgba(255,255,255,0.9);
-            max-width:520px;
+        .gallery-card-overlay p {
+            font-size:0.82rem;
+            color:rgba(255,255,255,0.7);
+            line-height:1.5;
+            max-width:420px;
         }
 
         /* CERTIFICATION STRIP */
@@ -1121,6 +1033,172 @@
     transform:translateY(-2px);
     box-shadow:0 14px 40px rgba(0,255,127,0.55);
 }
+
+/* ========= APPLE-STYLE GALLERY ========= */
+.gallery-section {
+    padding:6rem 0 5rem;
+    overflow:hidden;
+    background:var(--bg-dark);
+    position:relative;
+}
+/* Ambient glow behind active card */
+.gallery-section::after {
+    content:"";
+    position:absolute;
+    top:50%; left:50%;
+    width:600px; height:400px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(ellipse, rgba(0,255,127,0.06) 0%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
+}
+.gallery-section .section-title {
+    text-align:center;
+    margin-bottom:.4rem;
+    font-size:clamp(1.6rem, 3vw, 2.4rem);
+    letter-spacing:-0.03em;
+    font-weight:700;
+    position:relative;
+    z-index:1;
+}
+.gallery-section .section-subtitle {
+    text-align:center;
+    color:var(--text-muted);
+    margin-bottom:3rem;
+    font-size:0.95rem;
+    position:relative;
+    z-index:1;
+}
+.gallery-track-wrapper {
+    position:relative;
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+    overflow:hidden;
+    z-index:1;
+}
+.gallery-track {
+    display:flex;
+    gap:1.5rem;
+    transition:transform 0.65s cubic-bezier(0.32, 0.72, 0, 1);
+    padding:1.5rem 0 2rem;
+    will-change:transform;
+    cursor:grab;
+    user-select:none;
+}
+.gallery-track.grabbing { cursor:grabbing; }
+.gallery-card {
+    flex:0 0 min(760px, 88vw);
+    aspect-ratio:16/10;
+    border-radius:18px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 4px 24px rgba(0,0,0,0.35);
+    transition:transform 0.65s cubic-bezier(0.32,0.72,0,1),
+               opacity 0.5s ease,
+               box-shadow 0.5s ease;
+    transform:scale(0.88);
+    opacity:0.35;
+}
+.gallery-card.active {
+    transform:scale(1);
+    opacity:1;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 0 80px rgba(0,255,127,0.04);
+}
+.gallery-card img {
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.gallery-card.active img {
+    transform:scale(1.06);
+}
+/* Carousel nav */
+.carousel-arrow {
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:48px; height:48px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(16px) saturate(1.8);
+    border:1px solid rgba(255,255,255,0.1);
+    color:#fff; font-size:1.4rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; z-index:5;
+    transition:all .3s cubic-bezier(0.25,0.46,0.45,0.94);
+    opacity:0.7;
+}
+.carousel-arrow:hover {
+    background:rgba(0,0,0,0.6);
+    border-color:rgba(255,255,255,0.2);
+    opacity:1;
+    transform:translateY(-50%) scale(1.05);
+}
+.carousel-arrow--left  { left:clamp(0.75rem, 2vw, 2rem); }
+.carousel-arrow--right { right:clamp(0.75rem, 2vw, 2rem); }
+
+/* Slide counter */
+.carousel-counter {
+    text-align:center;
+    padding-top:1.2rem;
+    font-size:0.8rem;
+    color:rgba(255,255,255,0.35);
+    font-weight:500;
+    letter-spacing:0.12em;
+    font-variant-numeric:tabular-nums;
+}
+.carousel-counter .current-slide {
+    color:#fff;
+    font-weight:600;
+}
+
+/* Pagination dots */
+.carousel-dots {
+    display:flex; gap:6px;
+    justify-content:center;
+    padding-top:0.8rem;
+}
+.carousel-dot {
+    width:6px; height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    border:none; cursor:pointer;
+    transition:all .35s cubic-bezier(0.25,0.46,0.45,0.94);
+    padding:0;
+}
+.carousel-dot.active {
+    background:#fff;
+    width:28px;
+    border-radius:3px;
+}
+@media (max-width:720px) {
+    .gallery-section { padding:3.5rem 0 3rem; }
+    .gallery-section::after { width:300px; height:200px; }
+    .gallery-card {
+        flex:0 0 85vw;
+        border-radius:14px;
+        transform:scale(0.9);
+    }
+    .gallery-card-overlay { padding:1.2rem 1rem 1rem; }
+    .gallery-card-overlay h3 { font-size:0.95rem; }
+    .gallery-card-overlay p { font-size:0.75rem; }
+    .carousel-arrow {
+        width:36px; height:36px;
+        font-size:1rem;
+    }
+    .carousel-arrow--left  { left:0.4rem; }
+    .carousel-arrow--right { right:0.4rem; }
+    .carousel-counter { font-size:0.72rem; }
+    .video-showcase { padding:2.5rem 0; }
+    .video-showcase .about-video {
+        max-width:95vw;
+        border-radius:16px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1260,60 +1338,90 @@
 </div>
 
 
-                    <div class="about-image-card video-card">
-    <!-- <video class="about-video" muted loop playsinline>
-        <source src="media/Full Swing Pro 2.0 Simulator.mp4" type="video/mp4" />
-    </video> -->
-    <div class="about-video">
-    <iframe
-        src="https://www.youtube.com/embed/ydl1Kn4nCvA?autoplay=1&mute=1&loop=1&playlist=ydl1Kn4nCvA&rel=0&modestbranding=1&playsinline=1"
-        title="Full Swing Pro 2.0 Simulator"
-        allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-</div>
-
+                    <div class="about-image-card">
+    <!-- Replace with owner photo -->
+    <img src="Media/IMG_4819.JPG" alt="HOT 9 GOLF Owners" />
 </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- SCROLL STORY -->
-        <section class="scroll-story" id="experience">
-            <div class="story-media">
-                <img src="media/Tiger Woods Lights.jpg" class="story-image active" alt="Full Swing simulator bay with dramatic lighting">
-                <img src="media/FullSwing/Bluejack National 12.jpg" class="story-image" alt="Bluejack National hole 12 on Full Swing simulator">
-                <img src="media/FullSwing/TPC-Sawgrass-Hole-17-06.jpg" class="story-image" alt="TPC Sawgrass island green hole 17 on simulator">
+       <!-- GALLERY CAROUSEL -->
+        <section class="gallery-section" id="gallery">
+            <div class="container">
+                <h2 class="section-title">Inside HOT 9 GOLF</h2>
+                <p class="section-subtitle">Swipe through the experience</p>
             </div>
-
-            <div class="story-steps">
-                <div class="container">
-                    
-                    <div class="story-step active">
-                        <h2>Tour-level bays</h2>
-                        <p>
-                            Every shot is tracked for carry, total distance, spin, and dispersion in real time — Full Swing delivers the same data the pros use for real game improvement.
-                        </p>
-                    </div>
-
-                    <div class="story-step">
-                        <h2>Play iconic courses from around the world</h2>
-                        <p>
-                            Tee it up on legendary championship layouts and famous resort tracks — from Bluejack National to TPC Sawgrass — all without leaving the bay.
-                        </p>
-                    </div>
-
-                    <div class="story-step">
-                        <h2>Built for every golfer</h2>
-                        <p>
-                            Whether you're grinding on your short game, hosting friends, or competing in a closest-to-the-pin challenge — Hot 9 is your course, your rules.
-                        </p>
-                        <div style="margin-top:1.25rem;">
-                            <a href="https://clients.uschedule.com/hot9golf/booking" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book a Bay</a>
+            <div class="gallery-track-wrapper">
+                <button class="carousel-arrow carousel-arrow--left" id="carouselPrev" aria-label="Previous">&lsaquo;</button>
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-card">
+                        <img src="media/BookABayCover.JPG" alt="Tour-level simulator bay" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>Tour-level bays</h3>
+                            <p>Every shot tracked for carry, distance, spin &amp; dispersion — the same data the pros rely on.</p>
                         </div>
                     </div>
+                    <div class="gallery-card">
+                        <img src="media/IMG_4755.JPG" alt="Ladies enjoying indoor golf" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>Built for every golfer</h3>
+                            <p>Practice your short game, host friends, or compete — Hot 9 is your course, your rules.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="media/IMG_4880.JPG" alt="Luxury simulator bay" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>Premium experience</h3>
+                            <p>Luxury bays with Full Swing technology — practice, play, or entertain in style.</p>
+                        </div>
+                    </div>
+                    <!-- <div class="gallery-card">
+                        <img src="media/gallery-5.jpeg" alt="HOT 9 GOLF facility" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>The facility</h3>
+                            <p>A modern indoor golf lounge designed for comfort, competition, and year-round play.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="media/gallery-6.jpeg" alt="HOT 9 GOLF experience" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>Events &amp; groups</h3>
+                            <p>Host birthdays, corporate outings, or a night out — we’ve got the bays and the vibe.</p>
+                        </div>
+                    </div> -->
+                    <div class="gallery-card">
+                        <img src="media/FullSwing/Bluejack National 12.jpg" alt="Bluejack National course" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>Bluejack National</h3>
+                            <p>Tee it up on legendary championship layouts — all without leaving the bay.</p>
+                        </div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="media/FullSwing/TPC-Sawgrass-Hole-17-06.jpg" alt="TPC Sawgrass Hole 17" loading="lazy" />
+                        <div class="gallery-card-overlay">
+                            <h3>TPC Sawgrass</h3>
+                            <p>The iconic island green and dozens of world-class courses on Full Swing simulators.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-arrow--right" id="carouselNext" aria-label="Next">&rsaquo;</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="carousel-counter" id="carouselCounter"></div>
+        </section>
 
+        <!-- VIDEO SHOWCASE -->
+        <section class="video-showcase">
+            <div class="container">
+                <div class="about-video">
+                    <iframe
+                        src="https://www.youtube.com/embed/ydl1Kn4nCvA?autoplay=1&mute=1&loop=1&playlist=ydl1Kn4nCvA&rel=0&modestbranding=1&playsinline=1"
+                        title="Full Swing Pro 2.0 Simulator"
+                        allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
         </section>
@@ -1758,46 +1866,7 @@
     </script>
 
     <script>
-        /* SCROLL STORY – sync text + images */
-        (() => {
-            const steps = document.querySelectorAll('.story-step');
-            const images = document.querySelectorAll('.story-image');
-
-            if (!steps.length || !images.length) return;
-
-            function update() {
-                let active = 0;
-
-                steps.forEach((step, i) => {
-                    const rect = step.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight * 0.55) {
-                        active = i;
-                    }
-                });
-
-                steps.forEach((step, i) => {
-                    step.classList.toggle('active', i === active);
-                });
-
-                images.forEach((img, i) => {
-                    img.classList.toggle('active', i === active);
-                });
-            }
-
-            let ticking = false;
-            function onScroll() {
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        update();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }
-
-            window.addEventListener('scroll', onScroll, { passive: true });
-            update();
-        })();
+        /* (scroll story removed — info now in gallery overlays) */
     </script>
 
     <script>
@@ -1820,6 +1889,89 @@
         if (e.target === mobileNav) closeMobileNav();
     });
 </script>
+
+<!-- GALLERY CAROUSEL JS -->
+<script>
+(() => {
+    const track = document.getElementById('galleryTrack');
+    const cards = [...track.querySelectorAll('.gallery-card')];
+    const dotsWrap = document.getElementById('carouselDots');
+    const counterEl = document.getElementById('carouselCounter');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    let current = 0;
+    const total = cards.length;
+
+    // Build dots
+    cards.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+    });
+    const dots = [...dotsWrap.querySelectorAll('.carousel-dot')];
+
+    function getCardWidth() {
+        return cards[0].offsetWidth + parseFloat(getComputedStyle(track).gap);
+    }
+
+    function updateCounter() {
+        counterEl.innerHTML = '<span class="current-slide">' + (current + 1) + '</span> / ' + total;
+    }
+
+    function goTo(index) {
+        current = ((index % total) + total) % total;
+        const offset = current * getCardWidth();
+        const wrapper = track.parentElement;
+        const center = wrapper.offsetWidth / 2 - cards[0].offsetWidth / 2;
+        track.style.transform = 'translateX(' + (center - offset) + 'px)';
+
+        cards.forEach((c, i) => c.classList.toggle('active', i === current));
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        updateCounter();
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    // Touch / drag
+    let startX = 0, dx = 0, dragging = false;
+    track.addEventListener('pointerdown', (e) => {
+        dragging = true; startX = e.clientX; dx = 0;
+        track.classList.add('grabbing');
+        track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        dx = e.clientX - startX;
+    });
+    track.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false;
+        track.classList.remove('grabbing');
+        if (dx < -20) goTo(current + 1);
+        else if (dx > 20) goTo(current - 1);
+    });
+
+    // Auto-play 6s, pause on hover
+    let autoTimer = setInterval(() => goTo(current + 1), 6000);
+    track.parentElement.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    track.parentElement.addEventListener('mouseleave', () => {
+        autoTimer = setInterval(() => goTo(current + 1), 6000);
+    });
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') goTo(current - 1);
+        if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    goTo(0);
+    window.addEventListener('resize', () => goTo(current));
+})();
+</script>
+
 <!-- <script>
 document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector(".about-video");
