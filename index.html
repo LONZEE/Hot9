@@ -1942,6 +1942,7 @@ function trackEvent(eventName, params = {}) {
 </script>
 
 <!-- GIFT CARD POPUP -->
+<!-- GIFT CARD POPUP (disabled for now)
 <div class="gc-overlay" id="gcPopup">
     <div class="gc-popup">
         <button class="gc-close" id="gcClose" aria-label="Close popup">&times;</button>
@@ -1962,7 +1963,6 @@ function trackEvent(eventName, params = {}) {
     const closeBtn = document.getElementById('gcClose');
     const STORAGE_KEY = 'gc_popup_dismissed';
 
-    // Show popup after 3 seconds if not dismissed this session
     if (!sessionStorage.getItem(STORAGE_KEY)) {
         setTimeout(() => overlay.classList.add('active'), 3000);
     }
@@ -1978,6 +1978,7 @@ function trackEvent(eventName, params = {}) {
     });
 })();
 </script>
+-->
 
 </body>
 </html>
