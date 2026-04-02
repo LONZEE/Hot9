@@ -1,0 +1,28 @@
+{
+  "name": "HOT 9 GOLF",
+  "short_name": "HOT 9",
+  "description": "Premier indoor golf simulators in Brownsville, TX. Play world-class courses year-round with Full Swing technology.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#00ff7f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
