@@ -5,10 +5,10 @@ const PRECACHE_URLS = [
   '/home.html',
   '/kiosk.html',
   '/manifest.json',
-  '/media/logo-hot9.png',
-  '/media/Untitled%20design%20(14).png',
-  '/media/Fullswinglogo.png',
-  '/media/pga-tour-golf-channel-logosBlack.png'
+  '/Media/logo-hot9.png',
+  '/Media/Untitled%20design%20(14).png',
+  '/Media/Fullswinglogo.png',
+  '/Media/pga-tour-golf-channel-logosBlack.png'
 ];
 
 // Install — cache core shell
