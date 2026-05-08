@@ -1952,14 +1952,18 @@
         }
 
         document.querySelectorAll('[data-scroll]').forEach(el => {
-            el.addEventListener('click', e => {
+            const handleScrollClick = (e) => {
                 const href = el.getAttribute('href');
                 if (href && href.startsWith('#')) {
                     e.preventDefault();
                     closeMobileNav();
                     smoothScrollTo(href);
                 }
-            });
+            };
+            
+            // Use both touchend and click for iOS compatibility
+            el.addEventListener('touchend', handleScrollClick, { passive: false });
+            el.addEventListener('click', handleScrollClick);
         });
 
         /* MOBILE NAV */
@@ -1972,9 +1976,14 @@
             document.body.classList.add('nav-open');
         }
 
-        hamburger.addEventListener('click', () => {
+        const handleHamburgerToggle = (e) => {
+            e.preventDefault();
             hamburger.classList.contains('open') ? closeMobileNav() : openMobileNav();
-        });
+        };
+
+        // Use both touchend and click for iOS compatibility
+        hamburger.addEventListener('touchend', handleHamburgerToggle, { passive: false });
+        hamburger.addEventListener('click', handleHamburgerToggle);
 
         /* FOOTER YEAR */
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -1983,7 +1992,8 @@
     <script>
         /* PRICING TOGGLE */
         document.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
+            const handleToggle = (e) => {
+                e.preventDefault();
                 const target = btn.dataset.target;
 
                 document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
@@ -1995,7 +2005,11 @@
 
                 const group = document.getElementById(`pricing-${target}`);
                 if (group) group.classList.add('active');
-            });
+            };
+            
+            // Use both touchend and click for iOS compatibility
+            btn.addEventListener('touchend', handleToggle, { passive: false });
+            btn.addEventListener('click', handleToggle);
         });
     </script>
 
@@ -2045,21 +2059,38 @@
         /* FAQ TOGGLE */
         document.querySelectorAll('.faq-item').forEach(item => {
             const q = item.querySelector('.faq-question');
-            q.addEventListener('click', () => {
-                item.classList.toggle('open');
-            });
+            if (q) {
+                const handleFaqToggle = (e) => {
+                    e.preventDefault();
+                    item.classList.toggle('open');
+                };
+                
+                // Use both touchend and click for iOS compatibility
+                q.addEventListener('touchend', handleFaqToggle, { passive: false });
+                q.addEventListener('click', handleFaqToggle);
+            }
         });
     </script>
     <script>
     const closeBtn = document.querySelector('.mobile-nav-close');
     if (closeBtn) {
-        closeBtn.addEventListener('click', closeMobileNav);
+        const handleClose = (e) => {
+            e.preventDefault();
+            closeMobileNav();
+        };
+        closeBtn.addEventListener('touchend', handleClose, { passive: false });
+        closeBtn.addEventListener('click', handleClose);
     }
 
     // Optional: tap outside content closes menu
-    mobileNav.addEventListener('click', (e) => {
-        if (e.target === mobileNav) closeMobileNav();
-    });
+    const handleOutsideClick = (e) => {
+        if (e.target === mobileNav) {
+            e.preventDefault();
+            closeMobileNav();
+        }
+    };
+    mobileNav.addEventListener('touchend', handleOutsideClick, { passive: false });
+    mobileNav.addEventListener('click', handleOutsideClick);
 </script>
 
 <!-- GALLERY CAROUSEL JS -->
@@ -2079,7 +2110,12 @@
         const dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
         dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
+        const handleDotClick = (e) => {
+            e.preventDefault();
+            goTo(i);
+        };
+        dot.addEventListener('touchend', handleDotClick, { passive: false });
+        dot.addEventListener('click', handleDotClick);
         dotsWrap.appendChild(dot);
     });
     const dots = [...dotsWrap.querySelectorAll('.carousel-dot')];
@@ -2104,8 +2140,19 @@
         updateCounter();
     }
 
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
+    const handlePrev = (e) => {
+        e.preventDefault();
+        goTo(current - 1);
+    };
+    const handleNext = (e) => {
+        e.preventDefault();
+        goTo(current + 1);
+    };
+    
+    prevBtn.addEventListener('touchend', handlePrev, { passive: false });
+    prevBtn.addEventListener('click', handlePrev);
+    nextBtn.addEventListener('touchend', handleNext, { passive: false });
+    nextBtn.addEventListener('click', handleNext);
 
     // Touch / drag
     let startX = 0, dx = 0, dragging = false;
@@ -2291,15 +2338,28 @@ function trackEvent(eventName, params = {}) {
         setTimeout(() => overlay.classList.add('active'), 3000);
     }
 
-    function dismiss() {
+    function dismiss(e) {
+        if (e) e.preventDefault();
         overlay.classList.remove('active');
         sessionStorage.setItem(STORAGE_KEY, '1');
     }
 
-    closeBtn.addEventListener('click', dismiss);
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) dismiss();
-    });
+    const handleCloseClick = (e) => {
+        e.preventDefault();
+        dismiss();
+    };
+    
+    const handleOverlayClick = (e) => {
+        if (e.target === overlay) {
+            e.preventDefault();
+            dismiss();
+        }
+    };
+    
+    closeBtn.addEventListener('touchend', handleCloseClick, { passive: false });
+    closeBtn.addEventListener('click', handleCloseClick);
+    overlay.addEventListener('touchend', handleOverlayClick, { passive: false });
+    overlay.addEventListener('click', handleOverlayClick);
 })();
 </script>
 -->
