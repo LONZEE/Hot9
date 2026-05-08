@@ -198,6 +198,7 @@
         .nav-link {
             color:var(--text-muted);
             position:relative;
+            touch-action: manipulation;
         }
         .nav-link:hover { color:#fff; }
         .nav-link::after {
@@ -220,6 +221,8 @@
             gap:.4rem;
             transition:.2s;
             border:none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(0,255,127,0.2);
         }
         .btn-primary {
             background:linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -254,6 +257,8 @@
             background:transparent;
             border:none;
             padding:0;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         .hamburger span {
             height:2px;
@@ -295,6 +300,7 @@
         .mobile-nav-link {
             font-size:1rem;
             color:var(--text-main);
+            touch-action: manipulation;
         }
 
         .mobile-nav-actions {
@@ -666,6 +672,8 @@
             color:var(--text-muted);
             border:none;
             transition:all 0.2s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(0,255,127,0.2);
         }
         .toggle-btn.active {
             background:linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -821,6 +829,8 @@
             gap:1rem;
             cursor:pointer;
             font-size:0.9rem;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(0,255,127,0.2);
         }
         .faq-toggle {
             font-size:1rem;
