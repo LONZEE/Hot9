@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Book a Bay | HOT 9 GOLF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/booking.css" />
+    <!-- EmailJS sends the booking confirmation email straight from the browser, no backend needed -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-inner">
+            <a href="home.html" class="brand">
+                <img src="Media/Untitled%20design%20(14).png" alt="HOT 9 GOLF Logo" />
+                <span class="brand-title">HOT 9 GOLF</span>
+            </a>
+            <nav class="nav-links">
+                <a class="nav-link" href="home.html">Home</a>
+                <span class="nav-link active">Book a Bay</span>
+                <button type="button" class="btn btn-ghost btn-sm" id="logoutBtn" style="display:none;">Log Out</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Book Your Session</h1>
+
+            <!-- AUTH -->
+            <div class="auth-wrap" id="authWrap">
+                <div class="card">
+                    <div class="auth-tabs">
+                        <button type="button" class="auth-tab active" id="tabLogin">Log In</button>
+                        <button type="button" class="auth-tab" id="tabRegister">Register</button>
+                    </div>
+
+                    <form class="auth-form active" id="formLogin">
+                        <div class="field">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" required autocomplete="email" />
+                        </div>
+                        <div class="field">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" required autocomplete="current-password" />
+                        </div>
+                        <div class="form-msg" id="loginMsg"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    </form>
+
+                    <form class="auth-form" id="formRegister">
+                        <div class="field">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" id="registerName" required autocomplete="name" />
+                        </div>
+                        <div class="field">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" required autocomplete="email" />
+                        </div>
+                        <div class="field">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" required minlength="6" autocomplete="new-password" />
+                        </div>
+                        <div class="field">
+                            <label for="registerConfirm">Confirm Password</label>
+                            <input type="password" id="registerConfirm" required minlength="6" autocomplete="new-password" />
+                        </div>
+                        <div class="form-msg" id="registerMsg"></div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- APP (after login) -->
+            <div class="app-shell" id="appShell">
+                <div class="user-bar">
+                    <div class="user-chip">
+                        <span class="user-avatar" id="userAvatar">?</span>
+                        <span id="userChipName">&nbsp;</span>
+                    </div>
+                </div>
+
+                <div class="tab-row">
+                    <button type="button" class="btn btn-outline btn-sm" id="navBook">Book a Bay</button>
+                    <button type="button" class="btn btn-ghost btn-sm" id="navAppts">My Appointments</button>
+                </div>
+
+                <!-- BOOK VIEW -->
+                <div class="view active" id="viewBook">
+                    <div class="card calendar-card">
+                        <div class="calendar-head">
+                            <span class="month-label" id="monthLabel">&nbsp;</span>
+                            <div class="week-nav">
+                                <button type="button" class="week-nav-btn" id="weekPrev" aria-label="Previous week">&lsaquo;</button>
+                                <button type="button" class="week-nav-btn" id="weekNext" aria-label="Next week">&rsaquo;</button>
+                            </div>
+                        </div>
+                        <div class="day-strip" id="dayStrip"></div>
+
+                        <div class="bay-tabs" id="bayTabs"></div>
+
+                        <div class="slot-list" id="slotGrid"></div>
+
+                        <div class="booking-summary">
+                            <div class="booking-summary-text" id="summaryText">Select a time slot to continue.</div>
+                            <button type="button" class="btn btn-primary" id="confirmBtn" disabled>Confirm Booking</button>
+                        </div>
+                        <div class="form-msg" id="bookingMsg"></div>
+                    </div>
+                </div>
+
+                <!-- APPOINTMENTS VIEW -->
+                <div class="view" id="viewAppts">
+                    <div class="card">
+                        <div class="appt-list-head">
+                            <span>My Appointments</span>
+                            <span class="appt-count" id="apptCount">0</span>
+                        </div>
+                        <div class="appt-list" id="apptList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/booking.js"></script>
+</body>
+</html>
