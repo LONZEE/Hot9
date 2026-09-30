@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tournament Admin | HOT 9 GOLF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/booking.css" />
+    <link rel="stylesheet" href="assets/css/tournament.css" />
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-inner">
+            <a href="home.html" class="brand">
+                <img src="Media/Untitled%20design%20(14).png" alt="HOT 9 GOLF Logo" />
+                <span class="brand-title">HOT 9 GOLF</span>
+            </a>
+            <nav class="nav-links">
+                <a class="nav-link" href="Tourny.html">Leaderboard</a>
+                <span class="nav-link active">Admin</span>
+                <button type="button" class="nav-link nav-btn" id="lockBtn" hidden>Lock</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Tournament Admin</h1>
+
+            <!-- PIN GATE -->
+            <div class="auth-wrap" id="gateWrap">
+                <form id="pinForm" class="card">
+                    <h3>Admin Access</h3>
+                    <div class="field" id="emailField" hidden>
+                        <label for="emailInput">Admin email</label>
+                        <input type="email" id="emailInput" autocomplete="username" />
+                    </div>
+                    <div class="field">
+                        <label for="pinInput" id="pinLabel">Admin PIN</label>
+                        <input type="password" id="pinInput" required autocomplete="off" />
+                    </div>
+                    <div class="form-msg" id="pinMsg"></div>
+                    <button type="submit" class="btn btn-primary btn-block">Unlock</button>
+                </form>
+            </div>
+
+            <!-- ADMIN APP -->
+            <div id="adminApp" hidden>
+                <p class="sync-note" id="syncNote"></p>
+
+                <div class="picker-wrap" id="pickerWrap" hidden>
+                    <label for="tPicker" class="muted small">Tournament</label>
+                    <select id="tPicker"></select>
+                </div>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h3 id="adminFormTitle">Tournament</h3>
+                        <div class="admin-actions">
+                            <a class="btn btn-ghost btn-sm" href="Tourny.html" target="_blank" rel="noopener" id="viewBoardLink" hidden>View Leaderboard</a>
+                            <button type="button" class="btn btn-outline btn-sm" id="adminNewBtn">+ New Tournament</button>
+                            <button type="button" class="btn btn-ghost btn-sm danger" id="adminDeleteBtn" hidden>Delete</button>
+                        </div>
+                    </div>
+                    <div id="adminForm"></div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <h3>Enter / Correct Scores</h3>
+                    </div>
+                    <div id="adminScores"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/tournament-core.js"></script>
+    <script src="assets/js/tournament-admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tournament | HOT 9 GOLF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/booking.css" />
+    <link rel="stylesheet" href="assets/css/tournament.css" />
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container nav-inner">
+            <a href="home.html" class="brand">
+                <img src="Media/Untitled%20design%20(14).png" alt="HOT 9 GOLF Logo" />
+                <span class="brand-title">HOT 9 GOLF</span>
+            </a>
+            <nav class="nav-links">
+                <a class="nav-link" href="home.html">Home</a>
+                <a class="nav-link" href="booking.html">Book a Bay</a>
+                <span class="nav-link active">Tournament</span>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="t-title-row">
+                <h1 class="page-title" id="tName">Tournaments</h1>
+                <span class="status-pill" id="statusPill" hidden></span>
+            </div>
+            <p class="page-sub" id="tSub"></p>
+
+            <div class="picker-wrap" id="pickerWrap" hidden>
+                <label for="tPicker" class="muted small">Tournament</label>
+                <select id="tPicker"></select>
+            </div>
+
+            <div class="empty-state card" id="emptyState" hidden>
+                No tournaments are running right now. Check back soon!
+            </div>
+
+            <div id="viewsWrap">
+                <div class="tab-row t-tabs">
+                    <button type="button" class="t-tab active" data-view="board">Leaderboard</button>
+                    <button type="button" class="t-tab" data-view="me">My Card</button>
+                    <button type="button" class="t-tab" data-view="teams">Teams &amp; Flights</button>
+                </div>
+
+                <!-- LEADERBOARD -->
+                <section class="view active" id="view-board">
+                    <div class="card">
+                        <div class="board-head">
+                            <div class="bay-tabs" id="flightChips"></div>
+                            <div class="seg" id="boardMode">
+                                <button type="button" data-mode="players" class="active">Players</button>
+                                <button type="button" data-mode="teams">Teams</button>
+                            </div>
+                        </div>
+                        <div class="table-scroll" id="boardTable"></div>
+                    </div>
+                    <div class="card feed-card">
+                        <div class="card-head">
+                            <h3><span class="live-dot"></span>Live Feed</h3>
+                        </div>
+                        <ul class="feed" id="feedList"></ul>
+                    </div>
+                </section>
+
+                <!-- MY CARD -->
+                <section class="view" id="view-me">
+                    <div id="meWrap"></div>
+                </section>
+
+                <!-- TEAMS & FLIGHTS -->
+                <section class="view" id="view-teams">
+                    <div id="teamsWrap"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/tournament-core.js"></script>
+    <script src="assets/js/tournament-public.js"></script>
+</body>
+</html>
