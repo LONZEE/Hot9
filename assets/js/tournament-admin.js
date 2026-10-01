@@ -8,7 +8,7 @@ const ADMIN_PIN_HASH = "dc80aeb245e9b59f7f3797863903548b350ca7c4024abcc13aa30036
 const SS_ADMIN = "h9_tourny_admin";
 
 // GolfCourseAPI — free key from https://golfcourseapi.com (sign up, paste it here).
-const GOLF_API_KEY = "PASTE_YOUR_KEY_HERE";
+const GOLF_API_KEY = "B4OYSSBCV5LMW3SDG2ITMOS2BE";
 const GOLF_API_BASE = "https://api.golfcourseapi.com";
 
 Object.assign(state, {
