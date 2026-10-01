@@ -7,10 +7,19 @@
 const ADMIN_PIN_HASH = "dc80aeb245e9b59f7f3797863903548b350ca7c4024abcc13aa300369ade2a88";
 const SS_ADMIN = "h9_tourny_admin";
 
+// GolfCourseAPI — free key from https://golfcourseapi.com (sign up, paste it here).
+const GOLF_API_KEY = "PASTE_YOUR_KEY_HERE";
+const GOLF_API_BASE = "https://api.golfcourseapi.com";
+
 Object.assign(state, {
     draft: null,
     draftDirty: false,
     adminPlayerId: null,
+    courseQuery: "",
+    courseResults: [],
+    courseDetail: null,
+    courseSearching: false,
+    courseMsg: "",
 });
 
 async function sha256(text) {
@@ -117,6 +126,21 @@ function renderAdminForm() {
             <div class="field"><label>Handicap allowance %</label><input type="number" min="0" max="100" data-path="allowance" data-type="number" value="${d.allowance}" /></div>
         </div>
 
+        <h4 class="section-h">Course <span class="muted small">Search by city or course name to auto-fill pars &amp; stroke indexes</span></h4>
+        <div class="course-lookup">
+            <div class="admin-row">
+                <input id="courseQuery" placeholder="e.g. Bandon Dunes or Scottsdale" value="${esc(state.courseQuery)}" />
+                <button type="button" class="btn btn-outline btn-sm" data-act="course-search">${state.courseSearching ? "Searching…" : "Search"}</button>
+            </div>
+            ${state.courseMsg ? `<div class="form-msg">${esc(state.courseMsg)}</div>` : ""}
+            ${state.courseResults.length ? `<div class="admin-rows">${state.courseResults.map((c) => `
+                <div class="admin-row">
+                    <span>${esc(c.club_name || c.course_name || "Course")}${c.course_name && c.club_name && c.course_name !== c.club_name ? ` — ${esc(c.course_name)}` : ""}${c.location?.city ? ` · ${esc(c.location.city)}${c.location.state ? `, ${esc(c.location.state)}` : ""}` : ""}</span>
+                    <button type="button" class="btn btn-outline btn-sm" data-act="course-load" data-id="${esc(c.id)}">Use</button>
+                </div>`).join("")}</div>` : ""}
+            ${state.courseDetail ? teePickerHTML(state.courseDetail) : ""}
+        </div>
+
         <h4 class="section-h">Holes <span class="muted small">Stroke index: 1 = hardest hole, gets the first handicap stroke</span></h4>
         <div class="table-scroll">
             <table class="admin-holes">
@@ -168,6 +192,78 @@ function renderAdminForm() {
             <div class="form-msg" id="adminMsg"></div>
             <button type="button" class="btn btn-primary" data-act="save">Save Tournament</button>
         </div>`;
+}
+
+/* ---------------- golf course API ---------------- */
+
+function teePickerHTML(course) {
+    const tees = ["male", "female"].flatMap(g => (course.tees?.[g] || []).map((t, i) => ({ ...t, gender: g, i })));
+    if (!tees.length) return `<div class="form-msg">No tee box data for this course.</div>`;
+    return `<div class="admin-rows">${tees.map(t => `
+        <div class="admin-row">
+            <span>${esc(t.tee_name || "Tees")} (${t.gender === "male" ? "M" : "F"}) · Par ${t.par_total ?? "–"} · ${t.number_of_holes ?? "?"} holes</span>
+            <button type="button" class="btn btn-outline btn-sm" data-act="course-tee" data-g="${t.gender}" data-i="${t.i}">Load pars</button>
+        </div>`).join("")}</div>`;
+}
+
+async function golfFetch(path) {
+    if (!GOLF_API_KEY || GOLF_API_KEY === "PASTE_YOUR_KEY_HERE") {
+        throw new Error("Paste your golfcourseapi.com API key into GOLF_API_KEY in assets/js/tournament-admin.js.");
+    }
+    const res = await fetch(`${GOLF_API_BASE}${path}`, { headers: { Authorization: `Bearer ${GOLF_API_KEY}` } });
+    if (res.status === 401) throw new Error("Golf API key is missing or invalid.");
+    if (!res.ok) throw new Error(`Golf API error ${res.status}.`);
+    return res.json();
+}
+
+async function courseSearch() {
+    const q = state.courseQuery.trim();
+    if (!q) return;
+    state.courseSearching = true;
+    state.courseResults = [];
+    state.courseDetail = null;
+    state.courseMsg = "";
+    renderAdminForm();
+    try {
+        const data = await golfFetch(`/v1/search?search_query=${encodeURIComponent(q)}`);
+        state.courseResults = data.courses || [];
+        if (!state.courseResults.length) state.courseMsg = "No courses found — try a different name or city.";
+    } catch (e) {
+        state.courseMsg = e.message;
+    }
+    state.courseSearching = false;
+    renderAdminForm();
+}
+
+async function courseLoad(id) {
+    if (!id) return;
+    state.courseSearching = true;
+    state.courseDetail = null;
+    state.courseMsg = "";
+    renderAdminForm();
+    try {
+        const data = await golfFetch(`/v1/courses/${encodeURIComponent(id)}`);
+        state.courseDetail = data.course || data;
+    } catch (e) {
+        state.courseMsg = e.message;
+    }
+    state.courseSearching = false;
+    renderAdminForm();
+}
+
+function applyCourseTee(gender, i) {
+    const tee = state.courseDetail?.tees?.[gender]?.[i];
+    if (!tee?.holes?.length) return;
+    const d = state.draft;
+    const n = d.holes;
+    d.par = Array.from({ length: n }, (_, k) => tee.holes[k]?.par || 4);
+    const si = Array.from({ length: n }, (_, k) => tee.holes[k]?.handicap);
+    const valid = si.every(v => Number.isInteger(v) && v >= 1 && v <= n) && new Set(si).size === n;
+    d.si = valid ? si : Array.from({ length: n }, (_, k) => k + 1);
+    state.draftDirty = true;
+    state.courseDetail = null;
+    state.courseMsg = `${tee.tee_name || "Tees"} loaded — pars${valid ? " and stroke indexes" : ""} filled in${tee.holes.length < n ? ` (only ${tee.holes.length} holes on this tee, rest defaulted)` : ""}. Review below.`;
+    renderAdminForm();
 }
 
 /* ---------------- editing ---------------- */
@@ -236,9 +332,15 @@ async function saveDraft() {
     }
 }
 
-function handleAdminAction(act, i) {
+function handleAdminAction(act, i, ds = {}) {
     const d = state.draft;
     if (act === "save") return saveDraft();
+    if (act === "course-search") {
+        state.courseQuery = ($("courseQuery")?.value ?? state.courseQuery).trim();
+        return courseSearch();
+    }
+    if (act === "course-load") return courseLoad(ds.id);
+    if (act === "course-tee") return applyCourseTee(ds.g, Number(ds.i));
     if (act === "add-flight") {
         const top = Math.max(0, ...d.flights.map(f => f.max));
         d.flights.push({ id: uid(), name: "", max: Math.min(54, top + 10) });
@@ -307,7 +409,13 @@ function bindEvents() {
     });
     form.addEventListener("click", e => {
         const b = e.target.closest("[data-act]");
-        if (b) handleAdminAction(b.dataset.act, Number(b.dataset.i));
+        if (b) handleAdminAction(b.dataset.act, Number(b.dataset.i), b.dataset);
+    });
+    form.addEventListener("keydown", e => {
+        if (e.key === "Enter" && e.target.id === "courseQuery") {
+            e.preventDefault();
+            handleAdminAction("course-search");
+        }
     });
 
     $("adminNewBtn").addEventListener("click", () => {
